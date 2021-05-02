@@ -1,0 +1,2891 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+    <title>Como crear un entorno virtual en Python &#8211; Ricardo Romo</title>
+<meta name="robots" content="max-image-preview:large">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//s.w.org">
+<link rel="alternate" type="application/rss+xml" title="Ricardo Romo &raquo; Feed" href="./../../feed/index.html">
+<link rel="alternate" type="application/rss+xml" title="Ricardo Romo &raquo; Feed de los comentarios" href="./../../comments/feed/index.html">
+<link rel="alternate" type="application/rss+xml" title="Ricardo Romo &raquo; Comentario Como crear un entorno virtual en Python del feed" href="./feed/index.html">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.1\/svg\/","svgExt":".svg","source":{"concatemoji":".\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.7.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([55357,56424,8205,55356,57212],[55357,56424,8203,55356,57212])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}</style>
+	<link rel="stylesheet" id="extend-builder-css-css" href="./../../wp-content/plugins/colibri-page-builder/extend-builder/assets/static/css/theme.css?ver=1.0.190" type="text/css" media="all">
+<style id="extend-builder-css-inline-css" type="text/css">/* page css */
+/* part css : theme-shapes */
+.colibri-shape-circles {
+background-image:url('./../../wp-content/themes/colibri-wp/resources/images/header-shapes/circles.png')
+}
+.colibri-shape-10degree-stripes {
+background-image:url('./../../wp-content/themes/colibri-wp/resources/images/header-shapes/10degree-stripes.png')
+}
+.colibri-shape-rounded-squares-blue {
+background-image:url('./../../wp-content/themes/colibri-wp/resources/images/header-shapes/rounded-squares-blue.png')
+}
+.colibri-shape-many-rounded-squares-blue {
+background-image:url('./../../wp-content/themes/colibri-wp/resources/images/header-shapes/many-rounded-squares-blue.png')
+}
+.colibri-shape-two-circles {
+background-image:url('./../../wp-content/themes/colibri-wp/resources/images/header-shapes/two-circles.png')
+}
+.colibri-shape-circles-2 {
+background-image:url('./../../wp-content/themes/colibri-wp/resources/images/header-shapes/circles-2.png')
+}
+.colibri-shape-circles-3 {
+background-image:url('./../../wp-content/themes/colibri-wp/resources/images/header-shapes/circles-3.png')
+}
+.colibri-shape-circles-gradient {
+background-image:url('./../../wp-content/themes/colibri-wp/resources/images/header-shapes/circles-gradient.png')
+}
+.colibri-shape-circles-white-gradient {
+background-image:url('./../../wp-content/themes/colibri-wp/resources/images/header-shapes/circles-white-gradient.png')
+}
+.colibri-shape-waves {
+background-image:url('./../../wp-content/themes/colibri-wp/resources/images/header-shapes/waves.png')
+}
+.colibri-shape-waves-inverted {
+background-image:url('./../../wp-content/themes/colibri-wp/resources/images/header-shapes/waves-inverted.png')
+}
+.colibri-shape-dots {
+background-image:url('./../../wp-content/themes/colibri-wp/resources/images/header-shapes/dots.png')
+}
+.colibri-shape-left-tilted-lines {
+background-image:url('./../../wp-content/themes/colibri-wp/resources/images/header-shapes/left-tilted-lines.png')
+}
+.colibri-shape-right-tilted-lines {
+background-image:url('./../../wp-content/themes/colibri-wp/resources/images/header-shapes/right-tilted-lines.png')
+}
+.colibri-shape-right-tilted-strips {
+background-image:url('./../../wp-content/themes/colibri-wp/resources/images/header-shapes/right-tilted-strips.png')
+}
+/* part css : theme */
+
+.h-y-container > *:not(:last-child), .h-x-container-inner > * {
+  margin-bottom: 20px;
+}
+.h-x-container-inner, .h-column__content > .h-x-container > *:last-child {
+  margin-bottom: -20px;
+}
+.h-x-container-inner > * {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.h-x-container-inner {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+[class*=style-], [class*=local-style-], .h-global-transition, .h-global-transition-all, .h-global-transition-all * {
+  transition-duration: 1s;
+}
+.wp-block-button .wp-block-button__link:not(.has-background),.wp-block-file .wp-block-file__button {
+  background-color: #03a9f4;
+  background-image: none;
+}
+.wp-block-button .wp-block-button__link:not(.has-background):hover,.wp-block-button .wp-block-button__link:not(.has-background):focus,.wp-block-button .wp-block-button__link:not(.has-background):active,.wp-block-file .wp-block-file__button:hover,.wp-block-file .wp-block-file__button:focus,.wp-block-file .wp-block-file__button:active {
+  background-color: rgb(2, 110, 159);
+  background-image: none;
+}
+.wp-block-button.is-style-outline .wp-block-button__link:not(.has-background) {
+  color: #03a9f4;
+  background-color: transparent;
+  background-image: none;
+  border-top-width: 2px;
+  border-top-color: #03a9f4;
+  border-top-style: solid;
+  border-right-width: 2px;
+  border-right-color: #03a9f4;
+  border-right-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #03a9f4;
+  border-bottom-style: solid;
+  border-left-width: 2px;
+  border-left-color: #03a9f4;
+  border-left-style: solid;
+}
+.wp-block-button.is-style-outline .wp-block-button__link:not(.has-background):hover,.wp-block-button.is-style-outline .wp-block-button__link:not(.has-background):focus,.wp-block-button.is-style-outline .wp-block-button__link:not(.has-background):active {
+  color: #fff;
+  background-color: #03a9f4;
+  background-image: none;
+}
+.has-background-color,*[class^="wp-block-"].is-style-solid-color {
+  background-color: #03a9f4;
+  background-image: none;
+}
+.has-colibri-color-1-background-color {
+  background-color: #03a9f4;
+  background-image: none;
+}
+.wp-block-button .wp-block-button__link.has-colibri-color-1-background-color {
+  background-color: #03a9f4;
+  background-image: none;
+}
+.wp-block-button .wp-block-button__link.has-colibri-color-1-background-color:hover,.wp-block-button .wp-block-button__link.has-colibri-color-1-background-color:focus,.wp-block-button .wp-block-button__link.has-colibri-color-1-background-color:active {
+  background-color: rgb(2, 110, 159);
+  background-image: none;
+}
+.wp-block-button.is-style-outline .wp-block-button__link.has-colibri-color-1-background-color {
+  color: #03a9f4;
+  background-color: transparent;
+  background-image: none;
+  border-top-width: 2px;
+  border-top-color: #03a9f4;
+  border-top-style: solid;
+  border-right-width: 2px;
+  border-right-color: #03a9f4;
+  border-right-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #03a9f4;
+  border-bottom-style: solid;
+  border-left-width: 2px;
+  border-left-color: #03a9f4;
+  border-left-style: solid;
+}
+.wp-block-button.is-style-outline .wp-block-button__link.has-colibri-color-1-background-color:hover,.wp-block-button.is-style-outline .wp-block-button__link.has-colibri-color-1-background-color:focus,.wp-block-button.is-style-outline .wp-block-button__link.has-colibri-color-1-background-color:active {
+  color: #fff;
+  background-color: #03a9f4;
+  background-image: none;
+}
+*[class^="wp-block-"].has-colibri-color-1-background-color,*[class^="wp-block-"] .has-colibri-color-1-background-color,*[class^="wp-block-"].is-style-solid-color.has-colibri-color-1-color,*[class^="wp-block-"].is-style-solid-color blockquote.has-colibri-color-1-color,*[class^="wp-block-"].is-style-solid-color blockquote.has-colibri-color-1-color p {
+  background-color: #03a9f4;
+  background-image: none;
+}
+.has-colibri-color-1-color {
+  color: #03a9f4;
+}
+.has-colibri-color-2-background-color {
+  background-color: #f79007;
+  background-image: none;
+}
+.wp-block-button .wp-block-button__link.has-colibri-color-2-background-color {
+  background-color: #f79007;
+  background-image: none;
+}
+.wp-block-button .wp-block-button__link.has-colibri-color-2-background-color:hover,.wp-block-button .wp-block-button__link.has-colibri-color-2-background-color:focus,.wp-block-button .wp-block-button__link.has-colibri-color-2-background-color:active {
+  background-color: rgb(162, 94, 5);
+  background-image: none;
+}
+.wp-block-button.is-style-outline .wp-block-button__link.has-colibri-color-2-background-color {
+  color: #f79007;
+  background-color: transparent;
+  background-image: none;
+  border-top-width: 2px;
+  border-top-color: #f79007;
+  border-top-style: solid;
+  border-right-width: 2px;
+  border-right-color: #f79007;
+  border-right-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #f79007;
+  border-bottom-style: solid;
+  border-left-width: 2px;
+  border-left-color: #f79007;
+  border-left-style: solid;
+}
+.wp-block-button.is-style-outline .wp-block-button__link.has-colibri-color-2-background-color:hover,.wp-block-button.is-style-outline .wp-block-button__link.has-colibri-color-2-background-color:focus,.wp-block-button.is-style-outline .wp-block-button__link.has-colibri-color-2-background-color:active {
+  color: #fff;
+  background-color: #f79007;
+  background-image: none;
+}
+*[class^="wp-block-"].has-colibri-color-2-background-color,*[class^="wp-block-"] .has-colibri-color-2-background-color,*[class^="wp-block-"].is-style-solid-color.has-colibri-color-2-color,*[class^="wp-block-"].is-style-solid-color blockquote.has-colibri-color-2-color,*[class^="wp-block-"].is-style-solid-color blockquote.has-colibri-color-2-color p {
+  background-color: #f79007;
+  background-image: none;
+}
+.has-colibri-color-2-color {
+  color: #f79007;
+}
+.has-colibri-color-3-background-color {
+  background-color: #00bf87;
+  background-image: none;
+}
+.wp-block-button .wp-block-button__link.has-colibri-color-3-background-color {
+  background-color: #00bf87;
+  background-image: none;
+}
+.wp-block-button .wp-block-button__link.has-colibri-color-3-background-color:hover,.wp-block-button .wp-block-button__link.has-colibri-color-3-background-color:focus,.wp-block-button .wp-block-button__link.has-colibri-color-3-background-color:active {
+  background-color: rgb(0, 106, 75);
+  background-image: none;
+}
+.wp-block-button.is-style-outline .wp-block-button__link.has-colibri-color-3-background-color {
+  color: #00bf87;
+  background-color: transparent;
+  background-image: none;
+  border-top-width: 2px;
+  border-top-color: #00bf87;
+  border-top-style: solid;
+  border-right-width: 2px;
+  border-right-color: #00bf87;
+  border-right-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #00bf87;
+  border-bottom-style: solid;
+  border-left-width: 2px;
+  border-left-color: #00bf87;
+  border-left-style: solid;
+}
+.wp-block-button.is-style-outline .wp-block-button__link.has-colibri-color-3-background-color:hover,.wp-block-button.is-style-outline .wp-block-button__link.has-colibri-color-3-background-color:focus,.wp-block-button.is-style-outline .wp-block-button__link.has-colibri-color-3-background-color:active {
+  color: #fff;
+  background-color: #00bf87;
+  background-image: none;
+}
+*[class^="wp-block-"].has-colibri-color-3-background-color,*[class^="wp-block-"] .has-colibri-color-3-background-color,*[class^="wp-block-"].is-style-solid-color.has-colibri-color-3-color,*[class^="wp-block-"].is-style-solid-color blockquote.has-colibri-color-3-color,*[class^="wp-block-"].is-style-solid-color blockquote.has-colibri-color-3-color p {
+  background-color: #00bf87;
+  background-image: none;
+}
+.has-colibri-color-3-color {
+  color: #00bf87;
+}
+.has-colibri-color-4-background-color {
+  background-color: #6632ff;
+  background-image: none;
+}
+.wp-block-button .wp-block-button__link.has-colibri-color-4-background-color {
+  background-color: #6632ff;
+  background-image: none;
+}
+.wp-block-button .wp-block-button__link.has-colibri-color-4-background-color:hover,.wp-block-button .wp-block-button__link.has-colibri-color-4-background-color:focus,.wp-block-button .wp-block-button__link.has-colibri-color-4-background-color:active {
+  background-color: rgb(68, 33, 170);
+  background-image: none;
+}
+.wp-block-button.is-style-outline .wp-block-button__link.has-colibri-color-4-background-color {
+  color: #6632ff;
+  background-color: transparent;
+  background-image: none;
+  border-top-width: 2px;
+  border-top-color: #6632ff;
+  border-top-style: solid;
+  border-right-width: 2px;
+  border-right-color: #6632ff;
+  border-right-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #6632ff;
+  border-bottom-style: solid;
+  border-left-width: 2px;
+  border-left-color: #6632ff;
+  border-left-style: solid;
+}
+.wp-block-button.is-style-outline .wp-block-button__link.has-colibri-color-4-background-color:hover,.wp-block-button.is-style-outline .wp-block-button__link.has-colibri-color-4-background-color:focus,.wp-block-button.is-style-outline .wp-block-button__link.has-colibri-color-4-background-color:active {
+  color: #fff;
+  background-color: #6632ff;
+  background-image: none;
+}
+*[class^="wp-block-"].has-colibri-color-4-background-color,*[class^="wp-block-"] .has-colibri-color-4-background-color,*[class^="wp-block-"].is-style-solid-color.has-colibri-color-4-color,*[class^="wp-block-"].is-style-solid-color blockquote.has-colibri-color-4-color,*[class^="wp-block-"].is-style-solid-color blockquote.has-colibri-color-4-color p {
+  background-color: #6632ff;
+  background-image: none;
+}
+.has-colibri-color-4-color {
+  color: #6632ff;
+}
+.has-colibri-color-5-background-color {
+  background-color: #FFFFFF;
+  background-image: none;
+}
+.wp-block-button .wp-block-button__link.has-colibri-color-5-background-color {
+  background-color: #FFFFFF;
+  background-image: none;
+}
+.wp-block-button .wp-block-button__link.has-colibri-color-5-background-color:hover,.wp-block-button .wp-block-button__link.has-colibri-color-5-background-color:focus,.wp-block-button .wp-block-button__link.has-colibri-color-5-background-color:active {
+  background-color: rgb(102, 102, 102);
+  background-image: none;
+}
+.wp-block-button.is-style-outline .wp-block-button__link.has-colibri-color-5-background-color {
+  color: #FFFFFF;
+  background-color: transparent;
+  background-image: none;
+  border-top-width: 2px;
+  border-top-color: #FFFFFF;
+  border-top-style: solid;
+  border-right-width: 2px;
+  border-right-color: #FFFFFF;
+  border-right-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-style: solid;
+  border-left-width: 2px;
+  border-left-color: #FFFFFF;
+  border-left-style: solid;
+}
+.wp-block-button.is-style-outline .wp-block-button__link.has-colibri-color-5-background-color:hover,.wp-block-button.is-style-outline .wp-block-button__link.has-colibri-color-5-background-color:focus,.wp-block-button.is-style-outline .wp-block-button__link.has-colibri-color-5-background-color:active {
+  color: #fff;
+  background-color: #FFFFFF;
+  background-image: none;
+}
+*[class^="wp-block-"].has-colibri-color-5-background-color,*[class^="wp-block-"] .has-colibri-color-5-background-color,*[class^="wp-block-"].is-style-solid-color.has-colibri-color-5-color,*[class^="wp-block-"].is-style-solid-color blockquote.has-colibri-color-5-color,*[class^="wp-block-"].is-style-solid-color blockquote.has-colibri-color-5-color p {
+  background-color: #FFFFFF;
+  background-image: none;
+}
+.has-colibri-color-5-color {
+  color: #FFFFFF;
+}
+.has-colibri-color-6-background-color {
+  background-color: #17252a;
+  background-image: none;
+}
+.wp-block-button .wp-block-button__link.has-colibri-color-6-background-color {
+  background-color: #17252a;
+  background-image: none;
+}
+.wp-block-button .wp-block-button__link.has-colibri-color-6-background-color:hover,.wp-block-button .wp-block-button__link.has-colibri-color-6-background-color:focus,.wp-block-button .wp-block-button__link.has-colibri-color-6-background-color:active {
+  background-color: rgb(23, 37, 42);
+  background-image: none;
+}
+.wp-block-button.is-style-outline .wp-block-button__link.has-colibri-color-6-background-color {
+  color: #17252a;
+  background-color: transparent;
+  background-image: none;
+  border-top-width: 2px;
+  border-top-color: #17252a;
+  border-top-style: solid;
+  border-right-width: 2px;
+  border-right-color: #17252a;
+  border-right-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #17252a;
+  border-bottom-style: solid;
+  border-left-width: 2px;
+  border-left-color: #17252a;
+  border-left-style: solid;
+}
+.wp-block-button.is-style-outline .wp-block-button__link.has-colibri-color-6-background-color:hover,.wp-block-button.is-style-outline .wp-block-button__link.has-colibri-color-6-background-color:focus,.wp-block-button.is-style-outline .wp-block-button__link.has-colibri-color-6-background-color:active {
+  color: #fff;
+  background-color: #17252a;
+  background-image: none;
+}
+*[class^="wp-block-"].has-colibri-color-6-background-color,*[class^="wp-block-"] .has-colibri-color-6-background-color,*[class^="wp-block-"].is-style-solid-color.has-colibri-color-6-color,*[class^="wp-block-"].is-style-solid-color blockquote.has-colibri-color-6-color,*[class^="wp-block-"].is-style-solid-color blockquote.has-colibri-color-6-color p {
+  background-color: #17252a;
+  background-image: none;
+}
+.has-colibri-color-6-color {
+  color: #17252a;
+}
+.h-section-global-spacing {
+  padding-top: 90px;
+  padding-bottom: 90px;
+}
+body {
+  font-family: Open Sans;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgb(70, 112, 127);
+}
+body a {
+  font-family: Open Sans;
+  font-weight: 400;
+  text-decoration: none;
+  font-size: 1em;
+  line-height: 1.5;
+  color: #03a9f4;
+}
+body p {
+  margin-bottom: 16px;
+  font-family: Open Sans;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgb(70, 112, 127);
+}
+body .h-lead p {
+  margin-bottom: 16px;
+  font-family: Open Sans;
+  font-weight: 300;
+  font-size: 1.25em;
+  line-height: 1.5;
+  color: rgb(37, 41, 42);
+}
+body blockquote p {
+  margin-bottom: 16px;
+  font-family: Open Sans;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgb(70, 112, 127);
+}
+body h1 {
+  margin-bottom: 16px;
+  font-family: Open Sans;
+  font-weight: 300;
+  font-size: 3.375em;
+  line-height: 1.26;
+  color: rgb(23, 37, 42);
+}
+body h2 {
+  margin-bottom: 16px;
+  font-family: Open Sans;
+  font-weight: 300;
+  font-size: 2.625em;
+  line-height: 1.143;
+  color: rgb(23, 37, 42);
+}
+body h3 {
+  margin-bottom: 16px;
+  font-family: Open Sans;
+  font-weight: 300;
+  font-size: 2.25em;
+  line-height: 1.25;
+  color: rgb(23, 37, 42);
+}
+body h4 {
+  margin-bottom: 16px;
+  font-family: Open Sans;
+  font-weight: 600;
+  font-size: 1.25em;
+  line-height: 1.6;
+  color: rgb(23, 37, 42);
+}
+body h5 {
+  margin-bottom: 16px;
+  font-family: Open Sans;
+  font-weight: 600;
+  font-size: 1.125em;
+  line-height: 1.55;
+  color: rgb(23, 37, 42);
+}
+body h6 {
+  margin-bottom: 16px;
+  font-family: Open Sans;
+  font-weight: 600;
+  font-size: 1em;
+  line-height: 1.6;
+  color: rgb(23, 37, 42);
+}
+ .content.colibri-main-content-single .main-section .colibri-sidebar.blog-sidebar-right,.content.colibri-main-content-archive .main-section .colibri-sidebar.blog-sidebar-right {
+  width: 100px ;
+  flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  max-width: 100ch;
+}
+
+
+@media (min-width: 768px) and (max-width: 1023px){
+.h-section-global-spacing {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+}
+
+@media (max-width: 767px){
+.h-section-global-spacing {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+}
+/* part css : page */
+#colibri .style-231 {
+  animation-duration: 0.5s;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #ffffff;
+  background-image: none;
+}
+#colibri .h-navigation_sticky .style-231,#colibri .h-navigation_sticky.style-231 {
+  background-color: #ffffff;
+  background-image: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2) ;
+}
+#colibri .style-233 {
+  text-align: center;
+  height: auto;
+  min-height: unset;
+}
+#colibri .style-235 {
+  text-align: center;
+  height: auto;
+  min-height: unset;
+}
+#colibri .style-236 {
+  text-align: center;
+  height: auto;
+  min-height: unset;
+}
+#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu {
+  justify-content: flex-end;
+}
+#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu > li {
+  margin-top: 0px;
+  margin-right: 20px;
+  margin-bottom: 0px;
+  margin-left: 20px;
+  padding-top: 10px;
+  padding-right: 0px;
+  padding-bottom: 10px;
+  padding-left: 0px;
+}
+#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu > li.current_page_item,#colibri .style-237  >  div > .colibri-menu-container > ul.colibri-menu > li.current_page_item:hover {
+  margin-top: 0px;
+  margin-right: 20px;
+  margin-bottom: 0px;
+  margin-left: 20px;
+  padding-top: 10px;
+  padding-right: 0px;
+  padding-bottom: 10px;
+  padding-left: 0px;
+}
+#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu > li > a {
+  font-family: Open Sans;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 1.5em;
+  letter-spacing: 0px;
+  color: rgb(2, 110, 159);
+}
+#colibri .style-237  >  div > .colibri-menu-container > ul.colibri-menu > li.hover  > a {
+  color: #03a9f4;
+}
+#colibri .style-237  >  div > .colibri-menu-container > ul.colibri-menu > li:hover > a,#colibri .style-237  >  div > .colibri-menu-container > ul.colibri-menu > li.hover  > a {
+  color: #03a9f4;
+}
+#colibri .style-237  >  div > .colibri-menu-container > ul.colibri-menu > li.current_page_item > a,#colibri .style-237  >  div > .colibri-menu-container > ul.colibri-menu > li.current_page_item > a:hover {
+  font-family: Open Sans;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 1.5em;
+  letter-spacing: 0px;
+  color: #03a9f4;
+}
+#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu li > ul {
+  background-color: #ffffff;
+  background-image: none;
+  margin-right: 5px;
+  margin-left: 5px;
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.04) ;
+}
+#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu li > ul  li {
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  border-top-width: 0px;
+  border-top-style: none;
+  border-right-width: 0px;
+  border-right-style: none;
+  border-bottom-width: 1px;
+  border-bottom-color: rgba(128,128,128,.2);
+  border-bottom-style: solid;
+  border-left-width: 0px;
+  border-left-style: none;
+  background-color: rgb(255, 255, 255);
+  background-image: none;
+}
+#colibri .style-237  >  div > .colibri-menu-container > ul.colibri-menu li > ul > li.hover {
+  background-color: #03a9f4;
+}
+#colibri .style-237  >  div > .colibri-menu-container > ul.colibri-menu li > ul > li:hover,#colibri .style-237  >  div > .colibri-menu-container > ul.colibri-menu li > ul > li.hover {
+  background-color: #03a9f4;
+}
+#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu li > ul li.current_page_item,#colibri .style-237  >  div > .colibri-menu-container > ul.colibri-menu li > ul > li.current_page_item:hover {
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  border-top-width: 0px;
+  border-top-style: none;
+  border-right-width: 0px;
+  border-right-style: none;
+  border-bottom-width: 1px;
+  border-bottom-color: rgba(128,128,128,.2);
+  border-bottom-style: solid;
+  border-left-width: 0px;
+  border-left-style: none;
+  background-color: #03a9f4;
+  background-image: none;
+}
+#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu li > ul > li > a {
+  font-size: 14px;
+  color: rgb(37, 41, 42);
+}
+#colibri .style-237  >  div > .colibri-menu-container > ul.colibri-menu li > ul > li.hover  > a {
+  color: rgb(255, 255, 255);
+}
+#colibri .style-237  >  div > .colibri-menu-container > ul.colibri-menu li > ul > li:hover > a,#colibri .style-237  >  div > .colibri-menu-container > ul.colibri-menu li > ul > li.hover  > a {
+  color: rgb(255, 255, 255);
+}
+#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu li > ul > li.current_page_item > a,#colibri .style-237  >  div > .colibri-menu-container > ul.colibri-menu li > ul > li.current_page_item > a:hover {
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+}
+#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu.bordered-active-item > li::after,#colibri .style-237 
+      ul.colibri-menu.bordered-active-item > li::before {
+  background-color: #03a9f4;
+  background-image: none;
+  height: 3px;
+}
+#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu.solid-active-item > li::after,#colibri .style-237 
+      ul.colibri-menu.solid-active-item > li::before {
+  background-color: white;
+  background-image: none;
+  border-top-width: 0px;
+  border-top-style: none;
+  border-top-left-radius: 0%;
+  border-top-right-radius: 0%;
+  border-right-width: 0px;
+  border-right-style: none;
+  border-bottom-width: 0px;
+  border-bottom-style: none;
+  border-bottom-left-radius: 0%;
+  border-bottom-right-radius: 0%;
+  border-left-width: 0px;
+  border-left-style: none;
+}
+#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu > li > ul {
+  margin-top: 0px;
+}
+#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu > li > ul::before {
+  height: 0px;
+  width: 100% ;
+}
+#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu  li > a > svg,#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu  li > a >  .arrow-wrapper {
+  padding-right: 5px;
+  padding-left: 5px;
+  color: black;
+}
+#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu li.current_page_item > a > svg,#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu > li.current_page_item:hover > a > svg,#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu li.current_page_item > a > .arrow-wrapper,#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu > li.current_page_item:hover > a > .arrow-wrapper {
+  padding-right: 5px;
+  padding-left: 5px;
+  color: black;
+}
+#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu li > ul  li > a > svg,#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu li > ul  li > a >  .arrow-wrapper {
+  color: rgb(255, 255, 255);
+}
+#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu li > ul li.current_page_item > a > svg,#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu li > ul > li.current_page_item:hover > a > svg,#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu li > ul li.current_page_item > a > .arrow-wrapper,#colibri .style-237 >  div > .colibri-menu-container > ul.colibri-menu li > ul > li.current_page_item:hover > a > .arrow-wrapper {
+  color: rgb(255, 255, 255);
+}
+#colibri .h-navigation_sticky .style-237 >  div > .colibri-menu-container > ul.colibri-menu > li > a,#colibri .h-navigation_sticky.style-237 >  div > .colibri-menu-container > ul.colibri-menu > li > a {
+  color: rgb(2, 110, 159);
+}
+#colibri .h-navigation_sticky .style-237  >  div > .colibri-menu-container > ul.colibri-menu > li.hover  > a,#colibri .h-navigation_sticky.style-237  >  div > .colibri-menu-container > ul.colibri-menu > li.hover  > a {
+  color: #03a9f4;
+}
+#colibri .h-navigation_sticky .style-237  >  div > .colibri-menu-container > ul.colibri-menu > li:hover > a,#colibri .h-navigation_sticky .style-237  >  div > .colibri-menu-container > ul.colibri-menu > li.hover  > a,#colibri .h-navigation_sticky.style-237  >  div > .colibri-menu-container > ul.colibri-menu > li:hover > a,#colibri .h-navigation_sticky.style-237  >  div > .colibri-menu-container > ul.colibri-menu > li.hover  > a {
+  color: #03a9f4;
+}
+#colibri .h-navigation_sticky .style-237  >  div > .colibri-menu-container > ul.colibri-menu > li.current_page_item > a,#colibri .h-navigation_sticky .style-237  >  div > .colibri-menu-container > ul.colibri-menu > li.current_page_item > a:hover,#colibri .h-navigation_sticky.style-237  >  div > .colibri-menu-container > ul.colibri-menu > li.current_page_item > a,#colibri .h-navigation_sticky.style-237  >  div > .colibri-menu-container > ul.colibri-menu > li.current_page_item > a:hover {
+  color: #03a9f4;
+}
+#colibri .h-navigation_sticky .style-237 >  div > .colibri-menu-container > ul.colibri-menu.bordered-active-item > li::after,#colibri .h-navigation_sticky .style-237 
+      ul.colibri-menu.bordered-active-item > li::before,#colibri .h-navigation_sticky.style-237 >  div > .colibri-menu-container > ul.colibri-menu.bordered-active-item > li::after,#colibri .h-navigation_sticky.style-237 
+      ul.colibri-menu.bordered-active-item > li::before {
+  background-color: #03a9f4;
+  background-image: none;
+}
+#colibri .style-248 {
+  text-align: center;
+  height: auto;
+  min-height: unset;
+}
+#colibri .style-250 {
+  text-align: center;
+  height: auto;
+  min-height: unset;
+}
+#colibri .style-251 {
+  text-align: center;
+  height: auto;
+  min-height: unset;
+}
+#colibri .style-263-offscreen {
+  background-color: #222B34;
+  background-image: none;
+  width: 300px !important;
+}
+#colibri .style-263-offscreenOverlay {
+  background-color: rgba(0,0,0,0.5);
+  background-image: none;
+}
+#colibri .style-263  .h-hamburger-icon {
+  background-color: rgba(0, 0, 0, 0.1);
+  background-image: none;
+  border-top-width: 0px;
+  border-top-color: black;
+  border-top-style: solid;
+  border-top-left-radius: 100%;
+  border-top-right-radius: 100%;
+  border-right-width: 0px;
+  border-right-color: black;
+  border-right-style: solid;
+  border-bottom-width: 0px;
+  border-bottom-color: black;
+  border-bottom-style: solid;
+  border-bottom-left-radius: 100%;
+  border-bottom-right-radius: 100%;
+  border-left-width: 0px;
+  border-left-color: black;
+  border-left-style: solid;
+  fill: white;
+  padding-top: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  width: 24px;
+  height: 24px;
+}
+#colibri .style-265 >  div > .colibri-menu-container > ul.colibri-menu > li > a {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 40px;
+  border-top-width: 0px;
+  border-top-color: #808080;
+  border-top-style: solid;
+  border-right-width: 0px;
+  border-right-color: #808080;
+  border-right-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #808080;
+  border-bottom-style: solid;
+  border-left-width: 0px;
+  border-left-color: #808080;
+  border-left-style: solid;
+  font-size: 14px;
+  color: white;
+}
+#colibri .style-265  >  div > .colibri-menu-container > ul.colibri-menu > li.current_page_item > a,#colibri .style-265  >  div > .colibri-menu-container > ul.colibri-menu > li.current_page_item > a:hover {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 40px;
+  border-top-width: 0px;
+  border-top-color: #808080;
+  border-top-style: solid;
+  border-right-width: 0px;
+  border-right-color: #808080;
+  border-right-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #808080;
+  border-bottom-style: solid;
+  border-left-width: 0px;
+  border-left-color: #808080;
+  border-left-style: solid;
+  font-size: 14px;
+  color: white;
+}
+#colibri .style-265 >  div > .colibri-menu-container > ul.colibri-menu li > ul > li > a {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 40px;
+  border-top-width: 0px;
+  border-top-color: #808080;
+  border-top-style: solid;
+  border-right-width: 0px;
+  border-right-color: #808080;
+  border-right-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #808080;
+  border-bottom-style: solid;
+  border-left-width: 0px;
+  border-left-color: #808080;
+  border-left-style: solid;
+  font-size: 14px;
+  color: white;
+}
+#colibri .style-265 >  div > .colibri-menu-container > ul.colibri-menu li > ul > li.current_page_item > a,#colibri .style-265  >  div > .colibri-menu-container > ul.colibri-menu li > ul > li.current_page_item > a:hover {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 40px;
+  border-top-width: 0px;
+  border-top-color: #808080;
+  border-top-style: solid;
+  border-right-width: 0px;
+  border-right-color: #808080;
+  border-right-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #808080;
+  border-bottom-style: solid;
+  border-left-width: 0px;
+  border-left-color: #808080;
+  border-left-style: solid;
+  font-size: 14px;
+  color: white;
+}
+#colibri .style-265 >  div > .colibri-menu-container > ul.colibri-menu  li > a > svg,#colibri .style-265 >  div > .colibri-menu-container > ul.colibri-menu  li > a >  .arrow-wrapper {
+  padding-right: 20px;
+  padding-left: 20px;
+  color: black;
+}
+#colibri .style-265 >  div > .colibri-menu-container > ul.colibri-menu li.current_page_item > a > svg,#colibri .style-265 >  div > .colibri-menu-container > ul.colibri-menu > li.current_page_item:hover > a > svg,#colibri .style-265 >  div > .colibri-menu-container > ul.colibri-menu li.current_page_item > a > .arrow-wrapper,#colibri .style-265 >  div > .colibri-menu-container > ul.colibri-menu > li.current_page_item:hover > a > .arrow-wrapper {
+  padding-right: 20px;
+  padding-left: 20px;
+  color: black;
+}
+#colibri .style-265 >  div > .colibri-menu-container > ul.colibri-menu li > ul  li > a > svg,#colibri .style-265 >  div > .colibri-menu-container > ul.colibri-menu li > ul  li > a >  .arrow-wrapper {
+  color: white;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+#colibri .style-265 >  div > .colibri-menu-container > ul.colibri-menu li > ul li.current_page_item > a > svg,#colibri .style-265 >  div > .colibri-menu-container > ul.colibri-menu li > ul > li.current_page_item:hover > a > svg,#colibri .style-265 >  div > .colibri-menu-container > ul.colibri-menu li > ul li.current_page_item > a > .arrow-wrapper,#colibri .style-265 >  div > .colibri-menu-container > ul.colibri-menu li > ul > li.current_page_item:hover > a > .arrow-wrapper {
+  color: white;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+#colibri .style-267 {
+  text-align: center;
+  height: auto;
+  min-height: unset;
+}
+#colibri .style-268-image {
+  max-height: 70px;
+}
+#colibri .style-268 a,#colibri .style-268  .logo-text {
+  color: #ffffff;
+  text-decoration: none;
+}
+#colibri .h-navigation_sticky .style-268-image,#colibri .h-navigation_sticky.style-268-image {
+  max-height: 70px;
+}
+#colibri .h-navigation_sticky .style-268 a,#colibri .h-navigation_sticky .style-268  .logo-text,#colibri .h-navigation_sticky.style-268 a,#colibri .h-navigation_sticky.style-268  .logo-text {
+  color: #000000;
+  text-decoration: none;
+}
+#colibri .style-270 {
+  text-align: center;
+  height: auto;
+  min-height: unset;
+}
+#colibri .style-439-image {
+  max-height: 70px;
+}
+#colibri .style-439 a,#colibri .style-439  .logo-text {
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 20px;
+}
+#colibri .style-439 .logo-text {
+  color: #FFFFFF;
+}
+#colibri .h-navigation_sticky .style-439-image,#colibri .h-navigation_sticky.style-439-image {
+  max-height: 70px;
+}
+#colibri .h-navigation_sticky .style-439 a,#colibri .h-navigation_sticky .style-439  .logo-text,#colibri .h-navigation_sticky.style-439 a,#colibri .h-navigation_sticky.style-439  .logo-text {
+  color: #000000;
+  text-decoration: none;
+}
+#colibri .style-local-7-h4-outer {
+  flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+#colibri .style-local-7-h6-outer {
+  flex: 1 1 0;
+  -ms-flex: 1 1 0%;
+  max-width: 100%;
+}
+#colibri .style-local-7-h7-outer {
+  flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+#colibri .style-local-7-h19-outer {
+  flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+#colibri .style-local-7-h21-outer {
+  flex: 1 1 0;
+  -ms-flex: 1 1 0%;
+  max-width: 100%;
+}
+#colibri .style-local-7-h22-outer {
+  flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+#colibri .style-301 {
+  height: auto;
+  min-height: unset;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.style-303 > .h-y-container > *:not(:last-child) {
+  margin-bottom: 0px;
+}
+#colibri .style-303 {
+  text-align: center;
+  height: auto;
+  min-height: unset;
+}
+#colibri .style-local-15-f4-outer {
+  width: 100% ;
+  flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+}
+#colibri .style-594 {
+  margin-left: 8px;
+}
+#colibri .style-545 {
+  margin-right: 8px;
+  border-top-width: 1px;
+  border-top-color: rgb(238, 238, 238);
+  border-top-style: solid;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-right-width: 1px;
+  border-right-color: rgb(238, 238, 238);
+  border-right-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: rgb(238, 238, 238);
+  border-bottom-style: solid;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-left-width: 1px;
+  border-left-color: rgb(238, 238, 238);
+  border-left-style: solid;
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2) ;
+}
+#colibri .style-546 {
+  height: auto;
+  min-height: unset;
+  border-top-width: 1px;
+  border-top-color: rgb(238, 238, 238);
+  border-top-style: none;
+  border-right-width: 1px;
+  border-right-color: rgb(238, 238, 238);
+  border-right-style: none;
+  border-bottom-width: 1px;
+  border-bottom-color: rgb(238, 238, 238);
+  border-bottom-style: none;
+  border-left-width: 1px;
+  border-left-color: rgb(238, 238, 238);
+  border-left-style: none;
+  box-shadow: none;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+#colibri .style-552 {
+  text-align: left;
+  height: auto;
+  min-height: unset;
+}
+#colibri .style-553 {
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+}
+#colibri .style-554 {
+  text-align: center;
+  height: auto;
+  min-height: unset;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+}
+#colibri .style-555 {
+  background-color: #F79007;
+  background-image: none;
+  text-align: center;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  border-top-width: 0px;
+  border-top-style: none;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-right-width: 0px;
+  border-right-style: none;
+  border-bottom-width: 0px;
+  border-bottom-style: none;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-left-width: 0px;
+  border-left-style: none;
+}
+#colibri .style-555 .colibri-post-thumbnail-shortcode img {
+  height: 300px;
+  object-position: center center;
+  object-fit: cover;
+}
+#colibri .style-556 {
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+}
+#colibri .style-557 {
+  text-align: center;
+  height: auto;
+  min-height: unset;
+}
+#colibri .style-558 {
+  text-align: left;
+}
+#colibri .style-558 a {
+  font-size: 14px;
+  color: rgb(204, 204, 204);
+  margin-right: 5px;
+}
+#colibri .style-558 a:hover {
+  color: #f79007;
+}
+#colibri .style-558 a:hover {
+  color: #f79007;
+}
+#colibri .style-558 .metadata-prefix {
+  font-size: 14px;
+  color: rgb(204, 204, 204);
+}
+#colibri .style-558 .metadata-suffix {
+  font-size: 14px;
+  color: rgb(204, 204, 204);
+}
+#colibri .style-558 svg {
+  width: 16px ;
+  height: 16px;
+  margin-right: 5px;
+  display: inline-block;
+}
+#colibri .style-558 .meta-separator {
+  color: rgb(204, 204, 204);
+  margin-right: 5px;
+}
+#colibri .style-559 .colibri-post-content {
+  margin-bottom: 0px;
+  font-weight: 400;
+  line-height: 1.8em;
+}
+.style-561 > .h-y-container > *:not(:last-child) {
+  margin-bottom: 0px;
+}
+#colibri .style-561 {
+  text-align: center;
+  height: auto;
+  min-height: unset;
+}
+#colibri .style-562 p,#colibri .style-562  h1,#colibri .style-562  h2,#colibri .style-562  h3,#colibri .style-562  h4,#colibri .style-562  h5,#colibri .style-562  h6 {
+  text-align: left;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+}
+#colibri .style-562 .text-wrapper-fancy svg path {
+  stroke: #000000;
+  stroke-linejoin: initial;
+  stroke-linecap: initial;
+  stroke-width: 8px;
+}
+#colibri .style-563 {
+  text-align: left;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+}
+#colibri .style-563 a {
+  margin-right: 10px;
+  color: #03a9f4;
+}
+#colibri .style-563 a:hover {
+  color: #f79007;
+}
+#colibri .style-563 a:hover {
+  color: #f79007;
+}
+#colibri .style-563 .categories-prefix {
+  margin-right: 16px;
+}
+#colibri .style-564 {
+  text-align: left;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  border-top-width: 0px;
+  border-top-style: solid;
+  border-right-width: 0px;
+  border-right-style: solid;
+  border-bottom-width: 0px;
+  border-bottom-style: solid;
+  border-left-width: 0px;
+  border-left-style: solid;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+}
+#colibri .style-564 a {
+  margin-right: 5px;
+  padding-top: 2px;
+  padding-right: 8px;
+  padding-bottom: 2px;
+  padding-left: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  color: rgb(127, 144, 160);
+  border-top-width: 1px;
+  border-top-color: rgba(169, 181, 192, 0.4);
+  border-top-style: solid;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-right-width: 1px;
+  border-right-color: rgba(169, 181, 192, 0.4);
+  border-right-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: rgba(169, 181, 192, 0.4);
+  border-bottom-style: solid;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-left-width: 1px;
+  border-left-color: rgba(169, 181, 192, 0.4);
+  border-left-style: solid;
+}
+#colibri .style-564 a:hover {
+  color: #FFFFFF;
+  background-color: rgb(169, 181, 192);
+  background-image: none;
+}
+#colibri .style-564 a:hover {
+  color: #FFFFFF;
+  background-color: rgb(169, 181, 192);
+  background-image: none;
+}
+#colibri .style-564 .tags-prefix {
+  margin-right: 16px;
+}
+#colibri .style-565 {
+  border-top-width: 1px;
+  border-top-color: rgb(238, 238, 238);
+  border-top-style: solid;
+  border-right-width: 0px;
+  border-right-color: rgb(238, 238, 238);
+  border-right-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: rgb(238, 238, 238);
+  border-bottom-style: solid;
+  border-left-width: 0px;
+  border-left-color: rgb(238, 238, 238);
+  border-left-style: solid;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+#colibri .style-566 {
+  text-align: left;
+  height: auto;
+  min-height: unset;
+}
+#colibri .style-567 {
+  text-align: left;
+}
+#colibri .style-567 .nav-previous a,#colibri .style-567 .nav-next a {
+  text-decoration: underline;
+  color: #03a9f4;
+  border-top-width: 2px;
+  border-top-color: black;
+  border-top-style: none;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-right-width: 2px;
+  border-right-color: black;
+  border-right-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: black;
+  border-bottom-style: none;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-left-width: 2px;
+  border-left-color: black;
+  border-left-style: none;
+}
+#colibri .style-568 {
+  text-align: right;
+}
+#colibri .style-568 .nav-previous a,#colibri .style-568 .nav-next a {
+  text-decoration: underline;
+  color: #03a9f4;
+  border-top-width: 2px;
+  border-top-color: black;
+  border-top-style: none;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-right-width: 2px;
+  border-right-color: black;
+  border-right-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: black;
+  border-bottom-style: none;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-left-width: 2px;
+  border-left-color: black;
+  border-left-style: none;
+}
+#colibri .style-569 .blog-post-comments {
+  border-top-width: 1px;
+  border-top-color: rgb(227, 228, 229);
+  border-top-style: none;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  border-right-width: 1px;
+  border-right-color: rgb(227, 228, 229);
+  border-right-style: none;
+  border-bottom-width: 1px;
+  border-bottom-color: rgb(227, 228, 229);
+  border-bottom-style: none;
+  border-bottom-left-radius: 9px;
+  border-bottom-right-radius: 9px;
+  border-left-width: 1px;
+  border-left-color: rgb(227, 228, 229);
+  border-left-style: none;
+  box-shadow: none;
+  background-color: #FFFFFF;
+  background-image: none;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+#colibri .style-569 .comment.even {
+  background-color: #FFFFFF;
+  background-image: none;
+  border-top-width: 0px;
+  border-top-style: none;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-right-width: 0px;
+  border-right-style: none;
+  border-bottom-width: 0px;
+  border-bottom-style: none;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-left-width: 0px;
+  border-left-style: none;
+  padding-top: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
+  padding-left: 1em;
+  box-shadow: none;
+  margin-bottom: 15px;
+}
+#colibri .style-569 .comment.odd {
+  background-color: rgb(250, 250, 250);
+  background-image: none;
+  padding-top: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
+  padding-left: 1em;
+  border-top-width: 0px;
+  border-top-style: none;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  border-right-width: 0px;
+  border-right-style: none;
+  border-bottom-width: 0px;
+  border-bottom-style: none;
+  border-bottom-left-radius: 9px;
+  border-bottom-right-radius: 9px;
+  border-left-width: 0px;
+  border-left-style: none;
+  margin-bottom: 15px;
+}
+#colibri .style-569 .comment-meta {
+  box-shadow: none;
+  margin-left: 40px;
+}
+#colibri .style-569 .comment-author img {
+  width: 32px ;
+  height: 32px;
+  border-top-width: 1px;
+  border-top-style: none;
+  border-top-left-radius: 999px;
+  border-top-right-radius: 999px;
+  border-right-width: 1px;
+  border-right-style: none;
+  border-bottom-width: 1px;
+  border-bottom-style: none;
+  border-bottom-left-radius: 999px;
+  border-bottom-right-radius: 999px;
+  border-left-width: 1px;
+  border-left-style: none;
+  box-shadow: none;
+}
+#colibri .style-569 .comment-author .url {
+  font-style: normal;
+  color: #03a9f4;
+  margin-left: 5px;
+}
+#colibri .style-569 .comment-metadata {
+  font-style: italic;
+  font-size: 14px;
+  color: rgb(204, 204, 204);
+  box-shadow: none;
+}
+#colibri .style-569 .comment-metadata:hover {
+  color: #03a9f4;
+}
+#colibri .style-569 .comment-metadata:hover {
+  color: #03a9f4;
+}
+#colibri .style-569 .comment-content {
+  margin-left: 40px;
+}
+#colibri .style-569 .comment-body .reply a {
+  margin-bottom: 10px;
+  margin-left: 40px;
+  border-top-width: 1px;
+  border-top-color: rgb(227, 228, 229);
+  border-top-style: none;
+  border-right-width: 1px;
+  border-right-color: rgb(227, 228, 229);
+  border-right-style: none;
+  border-bottom-width: 1px;
+  border-bottom-color: rgb(227, 228, 229);
+  border-bottom-style: none;
+  border-left-width: 1px;
+  border-left-color: rgb(227, 228, 229);
+  border-left-style: none;
+  box-shadow: none;
+  background-color: unset;
+  background-image: none;
+  font-size: 14px;
+}
+#colibri .style-569 .comments-disabled {
+  text-align: center;
+  margin-bottom: 0px;
+}
+#colibri .comment-respond {
+  background-color: rgb(245, 248, 251);
+  background-image: none;
+  padding-top: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  border-top-width: 3px;
+  border-top-color: #FFFFFF;
+  border-top-style: none;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-right-width: 3px;
+  border-right-color: #FFFFFF;
+  border-right-style: none;
+  border-bottom-width: 3px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-left-width: 3px;
+  border-left-color: #FFFFFF;
+  border-left-style: none;
+}
+#colibri .comment-respond .comment-reply-title {
+  font-weight: 600;
+  font-size: 18px;
+}
+#colibri .comment-respond input:not([type="submit"]),#colibri .comment-respond textarea {
+  border-top-width: 1px;
+  border-top-color: rgb(221, 221, 221);
+  border-top-style: solid;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-right-width: 1px;
+  border-right-color: rgb(221, 221, 221);
+  border-right-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: rgb(221, 221, 221);
+  border-bottom-style: solid;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-left-width: 1px;
+  border-left-color: rgb(221, 221, 221);
+  border-left-style: solid;
+  font-size: 16px;
+  padding-top: 8px;
+  padding-right: 16px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+}
+#colibri .comment-respond .comment-form [type="submit"] {
+  background-color: #03a9f4;
+  background-image: none;
+  font-size: 16px;
+  color: #FFFFFF;
+  padding-top: 8px;
+  padding-right: 16px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  border-top-width: 1px;
+  border-top-color: #03a9f4;
+  border-top-style: solid;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-right-width: 1px;
+  border-right-color: #03a9f4;
+  border-right-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #03a9f4;
+  border-bottom-style: solid;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-left-width: 1px;
+  border-left-color: #03a9f4;
+  border-left-style: solid;
+}
+#colibri .comment-respond .comment-form [type="submit"]:hover {
+  background-color: rgb(2, 110, 159);
+  border-top-color: rgb(2, 110, 159);
+  border-right-color: rgb(2, 110, 159);
+  border-bottom-color: rgb(2, 110, 159);
+  border-left-color: rgb(2, 110, 159);
+}
+#colibri .comment-respond .comment-form [type="submit"]:hover {
+  background-color: rgb(2, 110, 159);
+  border-top-color: rgb(2, 110, 159);
+  border-right-color: rgb(2, 110, 159);
+  border-bottom-color: rgb(2, 110, 159);
+  border-left-color: rgb(2, 110, 159);
+}
+#colibri .comment-respond .comment-form [type="submit"]:active {
+  background-color: #03a9f4;
+  background-image: none;
+  font-size: 16px;
+  color: #FFFFFF;
+  padding-top: 8px;
+  padding-right: 16px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  border-top-width: 1px;
+  border-top-color: rgb(2, 110, 159);
+  border-top-style: solid;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-right-width: 1px;
+  border-right-color: rgb(2, 110, 159);
+  border-right-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: rgb(2, 110, 159);
+  border-bottom-style: solid;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-left-width: 1px;
+  border-left-color: rgb(2, 110, 159);
+  border-left-style: solid;
+}
+#colibri .style-633 {
+  text-align: left;
+  font-family: Montserrat;
+  font-weight: 400;
+  color: rgb(0, 0, 0);
+}
+#colibri .style-633 p {
+  font-family: Montserrat;
+  font-weight: 400;
+  color: rgb(0, 0, 0);
+}
+#colibri .style-local-328-m4-outer {
+  width: 100% ;
+  flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+}
+.site .style-dynamic-328-m7-height {
+  min-height: 300px;
+}
+#colibri .style-local-328-m19-outer {
+  width: 50% ;
+  flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+}
+#colibri .style-local-328-m21-outer {
+  width: 50% ;
+  flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+}
+@media (max-width: 767px){
+#colibri .style-233 {
+  text-align: left;
+}
+#colibri .style-263-offscreen {
+  background-color: #03a9f4;
+}
+#colibri .h-navigation_sticky .style-263  .h-hamburger-icon,#colibri .h-navigation_sticky.style-263  .h-hamburger-icon {
+  fill: #17252a;
+  background-color: #FFFFFF;
+  background-image: none;
+}
+#colibri .style-265 >  div > .colibri-menu-container > ul.colibri-menu > li > a {
+  border-bottom-color: rgb(166, 220, 244);
+}
+#colibri .style-265  >  div > .colibri-menu-container > ul.colibri-menu > li.hover  > a {
+  background-color: rgb(2, 110, 159);
+  background-image: none;
+}
+#colibri .style-265  >  div > .colibri-menu-container > ul.colibri-menu > li:hover > a,#colibri .style-265  >  div > .colibri-menu-container > ul.colibri-menu > li.hover  > a {
+  background-color: rgb(2, 110, 159);
+  background-image: none;
+}
+#colibri .style-265  >  div > .colibri-menu-container > ul.colibri-menu > li.current_page_item > a,#colibri .style-265  >  div > .colibri-menu-container > ul.colibri-menu > li.current_page_item > a:hover {
+  border-bottom-color: rgb(166, 220, 244);
+  background-color: rgb(2, 110, 159);
+  background-image: none;
+}
+#colibri .style-544 {
+  color: rgb(166, 220, 244);
+}
+#colibri .style-544 p {
+  color: rgb(166, 220, 244);
+}
+#colibri .style-544 a {
+  color: rgb(166, 220, 244);
+}
+#colibri .style-local-7-h4-outer {
+  flex: 1 1 0;
+  -ms-flex: 1 1 0%;
+}
+#colibri .style-local-7-h6-outer {
+  flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  width: auto;
+}
+#colibri .style-local-7-h19-outer {
+  width: 100% ;
+}
+#colibri .h-navigation_sticky .style-local-7-h19-outer,#colibri .h-navigation_sticky.style-local-7-h19-outer {
+  flex: 1 1 0;
+  -ms-flex: 1 1 0%;
+  max-width: 100%;
+}
+#colibri .style-local-7-h21-outer {
+  width: 100% ;
+  flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+}
+#colibri .h-navigation_sticky .style-local-7-h21-outer,#colibri .h-navigation_sticky.style-local-7-h21-outer {
+  flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+#colibri .style-local-7-h22-outer {
+  width: 100% ;
+}
+#colibri .h-navigation_sticky .style-local-7-h22-outer,#colibri .h-navigation_sticky.style-local-7-h22-outer {
+  flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+#colibri .style-local-7-h13-outer {
+  width: 100% ;
+  flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+}
+#colibri .style-local-7-h16-outer {
+  width: 100% ;
+  flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+}
+#colibri .style-594 {
+  margin-top: 30px;
+  margin-left: 0px;
+}
+#colibri .style-local-328-m6-outer {
+  width: 100% ;
+  flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+}
+#colibri .style-local-328-m9-outer {
+  width: 100% ;
+  flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+}
+#colibri .style-local-328-m13-outer {
+  width: 100% ;
+  flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+}
+#colibri .style-local-328-m19-outer {
+  width: 100% ;
+}
+#colibri .style-local-328-m21-outer {
+  width: 100% ;
+}}
+@media (min-width: 768px) and (max-width: 1023px){
+}</style>
+<link rel="stylesheet" id="fancybox-css" href="./../../wp-content/plugins/colibri-page-builder/extend-builder/assets/static/fancybox/jquery.fancybox.min.css?ver=1.0.190" type="text/css" media="all">
+<link rel="stylesheet" id="wp-block-library-css" href="./../../wp-content/plugins/gutenberg/build/block-library/style.css?ver=10.5.3" type="text/css" media="all">
+<link rel="stylesheet" id="extend_builder_-fonts-css" href="https://fonts.googleapis.com/css?family=Muli%3A200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7COpen+Sans%3A300%2C300italic%2C400%2C400italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%7CPlayfair+Display%3A400%2C400italic%2C700%2C700italic%2C900%2C900italic%7CMontserrat%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;subset=latin%2Clatin-ext" type="text/css" media="all">
+<link rel="stylesheet" id="elementor-icons-css" href="./../../wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css?ver=5.11.0" type="text/css" media="all">
+<link rel="stylesheet" id="elementor-animations-css" href="./../../wp-content/plugins/elementor/assets/lib/animations/animations.min.css?ver=3.2.2" type="text/css" media="all">
+<link rel="stylesheet" id="elementor-frontend-legacy-css" href="./../../wp-content/plugins/elementor/assets/css/frontend-legacy.min.css?ver=3.2.2" type="text/css" media="all">
+<link rel="stylesheet" id="elementor-frontend-css" href="./../../wp-content/plugins/elementor/assets/css/frontend.min.css?ver=3.2.2" type="text/css" media="all">
+<link rel="stylesheet" id="elementor-post-1304-css" href="./../../wp-content/uploads/elementor/css/post-1304.css?ver=1619968777" type="text/css" media="all">
+<link rel="stylesheet" id="post-grid-elementor-addon-main-css" href="./../../wp-content/plugins/post-grid-elementor-addon/assets/css/main.css?ver=5.7.1" type="text/css" media="all">
+<link rel="stylesheet" id="elementor-post-1284-css" href="./../../wp-content/uploads/elementor/css/post-1284.css?ver=1619970907" type="text/css" media="all">
+<link rel="stylesheet" id="google-fonts-1-css" href="https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto+Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CMontserrat%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;display=auto&#038;ver=5.7.1" type="text/css" media="all">
+<link rel="stylesheet" id="elementor-icons-shared-0-css" href="./../../wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min.css?ver=5.15.1" type="text/css" media="all">
+<link rel="stylesheet" id="elementor-icons-fa-brands-css" href="./../../wp-content/plugins/elementor/assets/lib/font-awesome/css/brands.min.css?ver=5.15.1" type="text/css" media="all">
+<link rel="stylesheet" id="elementor-icons-fa-solid-css" href="./../../wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min.css?ver=5.15.1" type="text/css" media="all">
+<link rel="stylesheet" id="elementor-icons-fa-regular-css" href="./../../wp-content/plugins/elementor/assets/lib/font-awesome/css/regular.min.css?ver=5.15.1" type="text/css" media="all">
+<script type="text/javascript" src="./../../wp-includes/js/jquery/jquery.min.js?ver=3.5.1" id="jquery-core-js"></script>
+<script type="text/javascript" src="./../../wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2" id="jquery-migrate-js"></script>
+<script type="text/javascript" src="./../../wp-includes/js/imagesloaded.min.js?ver=4.1.4" id="imagesloaded-js"></script>
+<script type="text/javascript" src="./../../wp-includes/js/masonry.min.js?ver=4.2.2" id="masonry-js"></script>
+<script type="text/javascript" id="colibri-js-extra">
+/* <![CDATA[ */
+var colibriData = {"7-h2":{"data":{"sticky":{"className":"h-navigation_sticky animated","topSpacing":0,"top":0,"stickyOnMobile":true,"stickyOnTablet":true,"startAfterNode":{"enabled":false,"selector":".header, .page-header"},"animations":{"enabled":false,"currentInAnimationClass":"slideInDown","currentOutAnimationClass":"slideOutDownNavigation","allInAnimationsClasses":"slideInDown fadeIn h-global-transition-disable","allOutAnimationsClasses":"slideOutDownNavigation fadeOut h-global-transition-disable","duration":500}},"overlap":false}},"7-h8":{"data":{"type":"horizontal"}},"7-h11":{"data":[]}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./../../wp-content/plugins/colibri-page-builder/extend-builder/assets/static/colibri.js?ver=1.0.190" id="colibri-js"></script>
+<script type="text/javascript" src="./../../wp-content/plugins/colibri-page-builder/extend-builder/assets/static/typed.js?ver=1.0.190" id="typed-js"></script>
+<script type="text/javascript" src="./../../wp-content/plugins/colibri-page-builder/extend-builder/assets/static/fancybox/jquery.fancybox.min.js?ver=1.0.190" id="fancybox-js"></script>
+<script type="text/javascript" src="./../../wp-content/plugins/colibri-page-builder/extend-builder/assets/static/js/theme.js?ver=1.0.190" id="extend-builder-js-js"></script>
+<link rel="https://api.w.org/" href="./../../wp-json/index.html">
+<link rel="alternate" type="application/json" href="./../../wp-json/wp/v2/posts/1284/index.html">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="./../../xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="./../../wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 5.7.1">
+<link rel="canonical" href="./index.html">
+<link rel="shortlink" href="./../../index.html?p=1284">
+<link rel="alternate" type="application/json+oembed" href="./../../wp-json/oembed/1.0/embed/index.html?url=https%3A%2F%2F%2F2020%2Fcomo-crear-un-entorno-virtual-en-python%2F">
+<link rel="alternate" type="text/xml+oembed" href="./../../wp-json/oembed/1.0/embed/index.html?url=https%3A%2F%2F%2F2020%2Fcomo-crear-un-entorno-virtual-en-python%2F&#038;format=xml">
+<meta name="generator" content="Site Kit by Google 1.31.0">                <style>#wpadminbar ul li#wp-admin-bar-colibri_top_bar_menu {
+                        background-color: rgba(3, 169, 244, 0.3);
+                        padding-left: 8px;
+                        padding-right: 8px;
+                        margin: 0px 16px;
+                    }
+
+                    #wpadminbar ul li#wp-admin-bar-colibri_top_bar_menu > a {
+                        background-color: transparent;
+                        color: #fff;
+                    }
+
+
+                    #wpadminbar ul li#wp-admin-bar-colibri_top_bar_menu > a img {
+                        max-height: 24px;
+                        margin-top: -4px;
+                        margin-right: 6px;
+                    }
+
+                    #wpadminbar ul li#wp-admin-bar-colibri_top_bar_menu > .ab-sub-wrapper {
+                        margin-left: -8px;
+                    }</style>
+				<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({"google_ad_client":"ca-pub-3215929379242591","enable_page_level_ads":true,"tag_partner":"site_kit"});</script><link rel="icon" href="./../../wp-content/uploads/2019/11/Logo-Para-Trailers-2_resultado-150x150.jpg" sizes="32x32">
+<link rel="icon" href="./../../wp-content/uploads/2019/11/Logo-Para-Trailers-2_resultado.jpg" sizes="192x192">
+<link rel="apple-touch-icon" href="./../../wp-content/uploads/2019/11/Logo-Para-Trailers-2_resultado.jpg">
+<meta name="msapplication-TileImage" content="./wp-content/uploads/2019/11/Logo-Para-Trailers-2_resultado.jpg">
+    <style>.colibri-featured-img-bg {
+            background-image: url("./../../wp-content/uploads/2020/01/Banner-Horizontal-entornos_python.jpg") !important;
+        }</style>
+    		<style type="text/css" id="wp-custom-css">[old-data-colibri-id="11-h32"] {
+    background-image: linear-gradient(to bottom, #89021b 0%,#202020 100%) !important;
+}
+
+#colibri .style-231 {
+    background-color: rgba(0,0,0,0.9);
+}
+
+#colibri .h-navigation_sticky.style-231 {
+	background-color: rgba(0,0,0,0.9);
+}
+
+#colibri .style-237 > div > .colibri-menu-container > ul.colibri-menu > li > a{
+	color:white;
+}
+
+pre{
+	font-family: Montserrat;
+	text-align:justify;
+}
+
+body a{
+	color:#006DEE;
+}
+body{
+	overflow-x:unset;
+}
+.offscreen-footer{
+	display:none;
+}
+.page-footer{
+	display:none;
+}
+
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #c5c5c5;
+}
+
+::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
+.h-logo__image {
+	    max-width: 70px;
+}
+.h-logo__alt-image  {
+	    max-width: 70px;
+}
+@media (max-width: 767px){
+	.elementor-column-wrap .elementor-element-populated{
+	margin:auto;
+}
+}
+
+.elementor-element .elementor-element-3fe3ea18 .elementor-section-full_width .elementor-section-content-space-between .elementor-section-stretched .elementor-section-height-default .elementor-section-height-default .elementor-section .elementor-top-section{
+	width:100;
+}
+.elementor-1359 .elementor-element.elementor-element-55c99037 .elementor-element-populated{
+	margin:auto;
+}</style>
+		    </head>
+
+<body id="colibri" class="post-template post-template-elementor_header_footer single single-post postid-1284 single-format-standard wp-custom-logo elementor-default elementor-template-full-width elementor-kit-1304 elementor-page elementor-page-1284">
+<div class="site" id="page-top">
+            <script>
+            /(trident|msie)/i.test(navigator.userAgent) && document.getElementById && window.addEventListener && window.addEventListener("hashchange", function () {
+                var t, e = location.hash.substring(1);
+                /^[A-z0-9_-]+$/.test(e) && (t = document.getElementById(e)) && (/^(?:a|select|input|button|textarea)$/i.test(t.tagName) || (t.tabIndex = -1), t.focus())
+            }, !1);
+        </script>
+        <a class="skip-link screen-reader-text" href="#content">
+            Saltar al contenido        </a>
+        <!-- dynamic header start --><div data-colibri-id="7-h1" class="page-header style-49 style-local-7-h1 position-relative">
+  <!---->
+  <div data-colibri-navigation-overlap="false" role="banner" class="h-navigation_outer style-231-outer style-local-7-h2-outer">
+    <!---->
+    <div id="navigation" data-colibri-component="navigation" data-colibri-id="7-h2" class="h-section h-navigation h-navigation d-flex style-231 style-local-7-h2">
+      <!---->
+      <div class="h-section-grid-container h-section-fluid-container">
+        <div data-nav-normal="">
+          <div data-colibri-id="7-h3" class="h-row-container h-section-boxed-container gutters-row-lg-0 gutters-row-md-0 gutters-row-1 gutters-row-v-lg-0 gutters-row-v-md-0 gutters-row-v-1 style-232 style-local-7-h3 position-relative">
+            <!---->
+            <div class="h-row justify-content-lg-center justify-content-md-center justify-content-center align-items-lg-stretch align-items-md-stretch align-items-stretch gutters-col-lg-0 gutters-col-md-0 gutters-col-1 gutters-col-v-lg-0 gutters-col-v-md-0 gutters-col-v-1">
+              <!---->
+              <div class="h-column h-column-container d-flex h-col-none style-233-outer style-local-7-h4-outer">
+                <div data-colibri-id="7-h4" data-placeholder-provider="navigation-logo" class="d-flex h-flex-basis h-column__inner h-px-lg-0 h-px-md-0 h-px-2 v-inner-lg-0 v-inner-md-0 v-inner-2 style-233 style-local-7-h4 position-relative">
+                  <!---->
+                  <!---->
+                  <div class="w-100 h-y-container h-column__content h-column__v-align flex-basis-auto align-self-lg-center align-self-md-center align-self-center">
+                    <!---->
+                    <div data-colibri-id="7-h5" class="d-flex align-items-center text-lg-left text-md-left text-left justify-content-lg-start justify-content-md-start justify-content-start style-439 style-local-7-h5 position-relative h-element">
+                      <!---->
+                      <a rel="home" href="./../../index.html" h-use-smooth-scroll="true" class="d-flex align-items-center">
+                        <img src="./../../wp-content/uploads/2019/11/cropped-Logo-Para-Trailers-2_resultado.jpg" class="h-logo__image h-logo__image_h logo-image style-439-image style-local-7-h5-image" alt="">
+                        <img src="./../../wp-content/uploads/2019/11/cropped-Logo-Para-Trailers-2_resultado.jpg" class="h-logo__alt-image h-logo__alt-image_h logo-alt-image style-439-image style-local-7-h5-image" alt="">
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="h-column h-column-container d-flex h-col-none style-235-outer style-local-7-h6-outer">
+                <div data-colibri-id="7-h6" data-placeholder-provider="navigation-spacing" class="d-flex h-flex-basis h-column__inner h-ui-empty-state-container h-px-lg-0 h-px-md-0 h-px-2 v-inner-lg-0 v-inner-md-0 v-inner-2 style-235 style-local-7-h6 position-relative">
+                  <!---->
+                  <!---->
+                  <div class="w-100 h-y-container h-column__content h-column__v-align flex-basis-100">
+                    <!---->
+                  </div>
+                </div>
+              </div>
+              <div class="h-column h-column-container d-flex h-col-none style-236-outer style-local-7-h7-outer">
+                <div data-colibri-id="7-h7" data-placeholder-provider="navigation-menu" class="d-flex h-flex-basis h-column__inner h-px-lg-0 h-px-md-0 h-px-2 v-inner-lg-0 v-inner-md-0 v-inner-2 style-236 style-local-7-h7 position-relative">
+                  <!---->
+                  <!---->
+                  <div class="w-100 h-y-container h-column__content h-column__v-align flex-basis-auto align-self-lg-center align-self-md-center align-self-center">
+                    <!---->
+                    <div data-colibri-component="dropdown-menu" role="navigation" h-use-smooth-scroll-all="true" data-colibri-id="7-h8" class="h-menu h-global-transition-all h-ignore-global-body-typography has-offcanvas-mobile h-menu-horizontal h-dropdown-menu style-237 style-local-7-h8 position-relative h-element">
+                      <!---->
+                      <div class="h-global-transition-all h-main-menu"><div class="colibri-menu-container"><ul id="menu-colibri-menu" class="colibri-menu bordered-active-item bordered-active-item--bottom effect-borders-grow grow-from-left">
+<li id="menu-item-340" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-340"><a href="./../../index.html#page-top">Home</a></li>
+<li id="menu-item-437" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-437"><a href="./../../proyectos/index.html">Proyectos</a></li>
+<li id="menu-item-1023" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1023"><a href="./../../tutoriales/index.html">Tutoriales</a></li>
+<li id="menu-item-1018" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1018"><a href="./../../blog/index.html">Blog</a></li>
+<li id="menu-item-469" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-469"><a href="./../../sobre-mi/index.html">Sobre mí</a></li>
+<li id="menu-item-589" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-589"><a href="./../../politica-de-privacidad/index.html">Politica de privacidad</a></li>
+</ul></div></div>
+                      <div data-colibri-id="7-h9" class="h-mobile-menu h-global-transition-disable style-263 style-local-7-h9 position-relative h-element">
+                        <!---->
+                        <a data-click-outside="true" data-target="#offcanvas-wrapper-7-h9" data-target-id="offcanvas-wrapper-7-h9" data-offcanvas-overlay-id="offcanvas-overlay-7-h9" href="#" data-colibri-component="offcanvas" data-direction="right" data-push="false" title="Menu" class="h-hamburger-button">
+                          <div class="icon-container h-hamburger-icon">
+                            <div class="h-icon-svg" style="width: 100%; height: 100%;">
+                              <!--Icon by Font Awesome (https://fontawesome.com)-->
+                              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="bars" viewbox="0 0 1536 1896.0833">
+                                <path d="M1536 1344v128q0 26-19 45t-45 19H64q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19H64q-26 0-45-19T0 960V832q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19H64q-26 0-45-19T0 448V320q0-26 19-45t45-19h1408q26 0 45 19t19 45z"></path>
+                              </svg>
+                            </div>
+                          </div>
+                        </a>
+                        <div id="offcanvas-wrapper-7-h9" class="h-offcanvas-panel offcanvas offcanvas-right hide force-hide style-263-offscreen style-local-7-h9-offscreen">
+                          <div data-colibri-id="7-h10" class="d-flex flex-column h-offscreen-panel style-264 style-local-7-h10 position-relative h-element">
+                            <!---->
+                            <div class="offscreen-header h-ui-empty-state-container">
+                              <div data-colibri-id="7-h12" class="h-row-container gutters-row-lg-2 gutters-row-md-2 gutters-row-0 gutters-row-v-lg-2 gutters-row-v-md-2 gutters-row-v-2 style-266 style-local-7-h12 position-relative">
+                                <!---->
+                                <div class="h-row justify-content-lg-center justify-content-md-center justify-content-center align-items-lg-stretch align-items-md-stretch align-items-stretch gutters-col-lg-2 gutters-col-md-2 gutters-col-0 gutters-col-v-lg-2 gutters-col-v-md-2 gutters-col-v-2">
+                                  <!---->
+                                  <div class="h-column h-column-container d-flex h-col-lg-6 h-col-md-6 h-col-12 style-267-outer style-local-7-h13-outer">
+                                    <div data-colibri-id="7-h13" class="d-flex h-flex-basis h-column__inner h-px-lg-2 h-px-md-2 h-px-2 v-inner-lg-2 v-inner-md-2 v-inner-2 style-267 style-local-7-h13 position-relative">
+                                      <!---->
+                                      <!---->
+                                      <div class="w-100 h-y-container h-column__content h-column__v-align flex-basis-100 align-self-lg-start align-self-md-start align-self-start">
+                                        <!---->
+                                        <div data-colibri-id="7-h14" class="d-flex align-items-center text-lg-center text-md-center text-center justify-content-lg-center justify-content-md-center justify-content-center style-268 style-local-7-h14 position-relative h-element">
+                                          <!---->
+                                          <a rel="home" href="./../../index.html" h-use-smooth-scroll="true" class="d-flex align-items-center">
+                                            <img src="./../../wp-content/uploads/2019/11/cropped-Logo-Para-Trailers-2_resultado.jpg" class="h-logo__image h-logo__image_h logo-image style-268-image style-local-7-h14-image" alt="">
+                                            <img src="./../../wp-content/uploads/2019/11/cropped-Logo-Para-Trailers-2_resultado.jpg" class="h-logo__alt-image h-logo__alt-image_h logo-alt-image style-268-image style-local-7-h14-image" alt="">
+                                          </a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="offscreen-content">
+                              <!---->
+                              <div data-colibri-component="accordion-menu" role="navigation" h-use-smooth-scroll-all="true" data-colibri-id="7-h11" class="h-menu h-global-transition-all h-ignore-global-body-typography h-mobile-menu h-menu-accordion style-265 style-local-7-h11 position-relative h-element">
+                                <!---->
+                                <div class="h-global-transition-all h-mobile-menu"><div class="colibri-menu-container"><ul id="menu-colibri-menu-1" class="colibri-menu none ">
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-340"><a href="./../../index.html#page-top">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-437"><a href="./../../proyectos/index.html">Proyectos</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1023"><a href="./../../tutoriales/index.html">Tutoriales</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1018"><a href="./../../blog/index.html">Blog</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-469"><a href="./../../sobre-mi/index.html">Sobre mí</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-589"><a href="./../../politica-de-privacidad/index.html">Politica de privacidad</a></li>
+</ul></div></div>
+                              </div>
+                            </div>
+                            <div class="offscreen-footer h-ui-empty-state-container">
+                              <div data-colibri-id="7-h15" class="h-row-container gutters-row-lg-2 gutters-row-md-2 gutters-row-0 gutters-row-v-lg-2 gutters-row-v-md-2 gutters-row-v-2 style-269 style-local-7-h15 position-relative">
+                                <!---->
+                                <div class="h-row justify-content-lg-center justify-content-md-center justify-content-center align-items-lg-stretch align-items-md-stretch align-items-stretch gutters-col-lg-2 gutters-col-md-2 gutters-col-0 gutters-col-v-lg-2 gutters-col-v-md-2 gutters-col-v-2">
+                                  <!---->
+                                  <div class="h-column h-column-container d-flex h-col-lg-6 h-col-md-6 h-col-12 style-270-outer style-local-7-h16-outer">
+                                    <div data-colibri-id="7-h16" class="d-flex h-flex-basis h-column__inner h-px-lg-2 h-px-md-2 h-px-2 v-inner-lg-2 v-inner-md-2 v-inner-2 style-270 style-local-7-h16 position-relative">
+                                      <!---->
+                                      <!---->
+                                      <div class="w-100 h-y-container h-column__content h-column__v-align flex-basis-100 align-self-lg-start align-self-md-start align-self-start">
+                                        <!---->
+                                        <div data-colibri-id="7-h17" class="style-544 style-local-7-h17 position-relative h-element">
+                                          <!---->
+                                          <div class="h-global-transition-all">© 2021 Ricardo Romo. Created for free using WordPress and
+                                            <a target="_blank" href="https://colibriwp.com/">Colibri</a>
+</div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div id="offcanvas-overlay-7-h9" class="offscreen-overlay style-263-offscreenOverlay style-local-7-h9-offscreenOverlay"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div data-nav-sticky="" style="display: none;">
+          <div data-colibri-id="7-h18" class="h-row-container h-section-boxed-container gutters-row-lg-0 gutters-row-md-0 gutters-row-1 gutters-row-v-lg-0 gutters-row-v-md-0 gutters-row-v-1 style-247 style-local-7-h18 position-relative">
+            <!---->
+            <div class="h-row justify-content-lg-center justify-content-md-center justify-content-center align-items-lg-stretch align-items-md-stretch align-items-stretch gutters-col-lg-0 gutters-col-md-0 gutters-col-1 gutters-col-v-lg-0 gutters-col-v-md-0 gutters-col-v-1">
+              <!---->
+              <div class="h-column h-column-container d-flex h-col-none style-248-outer style-local-7-h19-outer">
+                <div data-colibri-id="7-h19" class="d-flex h-flex-basis h-column__inner h-px-lg-0 h-px-md-0 h-px-2 v-inner-lg-0 v-inner-md-0 v-inner-2 style-248 style-local-7-h19 position-relative">
+                  <!---->
+                  <!---->
+                  <div class="w-100 h-y-container h-column__content h-column__v-align flex-basis-auto align-self-lg-center align-self-md-center align-self-center">
+                    <!----><span data-placeholder="navigation-logo"></span>
+</div>
+                </div>
+              </div>
+              <div class="h-column h-column-container d-flex h-col-none style-250-outer style-local-7-h21-outer">
+                <div data-colibri-id="7-h21" class="d-flex h-flex-basis h-column__inner h-ui-empty-state-container h-px-lg-0 h-px-md-0 h-px-2 v-inner-lg-0 v-inner-md-0 v-inner-2 style-250 style-local-7-h21 position-relative">
+                  <!---->
+                  <!---->
+                  <div class="w-100 h-y-container h-column__content h-column__v-align flex-basis-100">
+                    <!---->
+                  </div>
+                </div>
+              </div>
+              <div class="h-column h-column-container d-flex h-col-none style-251-outer style-local-7-h22-outer">
+                <div data-colibri-id="7-h22" class="d-flex h-flex-basis h-column__inner h-px-lg-0 h-px-md-0 h-px-2 v-inner-lg-0 v-inner-md-0 v-inner-2 style-251 style-local-7-h22 position-relative">
+                  <!---->
+                  <!---->
+                  <div class="w-100 h-y-container h-column__content h-column__v-align flex-basis-auto align-self-lg-center align-self-md-center align-self-center">
+                    <!----><span data-placeholder="navigation-menu"></span>
+</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>		<script type="text/javascript">
+          (function () {
+            function setHeaderTopSpacing() {
+
+                // forEach polyfill
+                if(!NodeList.prototype.forEach){
+                    NodeList.prototype.forEach = function (callback) {
+                        for(var i=0;i<this.length;i++){
+                            callback.call(this,this.item(i));
+                        }
+                    }
+                }
+
+              // '[data-colibri-component="navigation"][data-overlap="true"]' selector is backward compatibility
+              var navigation = document.querySelector('[data-colibri-navigation-overlap="true"], [data-colibri-component="navigation"][data-overlap="true"]')
+              if (navigation) {
+                var els = document
+                .querySelectorAll('.h-navigation-padding');
+                if (els.length) {
+                  els.forEach(function (item) {
+                    item.style.paddingTop = navigation.offsetHeight + "px";
+                  });
+                }
+              }
+            }
+            setHeaderTopSpacing();
+          })();
+		</script>
+		<!-- dynamic header end -->
+		<div data-elementor-type="wp-post" data-elementor-id="1284" class="elementor elementor-1284" data-elementor-settings="[]">
+						<div class="elementor-inner">
+							<div class="elementor-section-wrap">
+							<section class="elementor-section elementor-top-section elementor-element elementor-element-9d9d2e2 elementor-section-full_width elementor-section-content-middle elementor-section-height-default elementor-section-height-default" data-id="9d9d2e2" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-2f3aa8e6" data-id="2f3aa8e6" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-64ac330f elementor-widget elementor-widget-heading" data-id="64ac330f" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Como crear un entorno virtual en Python</h2>		</div>
+				</div>
+				<section class="elementor-section elementor-inner-section elementor-element elementor-element-4a938573 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="4a938573" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-55a4e946" data-id="55a4e946" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-274e0b13 elementor-widget elementor-widget-text-editor" data-id="274e0b13" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<h4>29 de Enero de 2020</h4>					</div>
+						</div>
+				</div>
+						</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-11f62124" data-id="11f62124" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-d744c55 elementor-widget elementor-widget-progress" data-id="d744c55" data-element_type="widget" data-widget_type="progress.default">
+				<div class="elementor-widget-container">
+						<span class="elementor-title">Dificultad</span>
+		
+		<div class="elementor-progress-wrapper progress-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20" aria-valuetext="">
+			<div class="elementor-progress-bar" data-max="20">
+				<span class="elementor-progress-text"></span>
+									<span class="elementor-progress-percentage">20%</span>
+							</div>
+		</div>
+				</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-inner-section elementor-element elementor-element-777d9cbd elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="777d9cbd" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-f2b6eff" data-id="f2b6eff" data-element_type="column">
+			<div class="elementor-column-wrap">
+							<div class="elementor-widget-wrap">
+								</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-7c5abe32" data-id="7c5abe32" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-1f8ac215 elementor-invisible elementor-widget elementor-widget-image" data-id="1f8ac215" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;bounceIn&quot;}" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-image">
+												<img src="./../../wp-content/uploads/elementor/thumbs/Banner-Horizontal-entornos_python-ou0fzzxc7ayoerk16j1xqnk1rqyvit5vlyk9pj1ijs.jpg" title="Banner-Horizontal-entornos_python" alt="Banner-Horizontal-entornos_python">														</div>
+						</div>
+				</div>
+						</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-4cf0defe" data-id="4cf0defe" data-element_type="column">
+			<div class="elementor-column-wrap">
+							<div class="elementor-widget-wrap">
+								</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<div class="elementor-element elementor-element-22f5a0ed elementor-widget elementor-widget-text-editor" data-id="22f5a0ed" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">Muchas veces durante el desarrollo de un proyecto, necesitarás tener diferentes versiones de una misma librería o paquete, crear </span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-weight: bold; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">ambientes virtuales,</span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;"> nos permite hacer que esta tarea no cree ningún conflicto con otras librerías o proyectos. De esta manera podemos tener </span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-weight: bold; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">ambientes aislados</span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;"> que no generen estos problemas.&nbsp;</span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-5aef7aec elementor-position-top elementor-vertical-align-top elementor-widget elementor-widget-image-box" data-id="5aef7aec" data-element_type="widget" data-widget_type="image-box.default">
+				<div class="elementor-widget-container">
+			<div class="elementor-image-box-wrapper"><figure class="elementor-image-box-img"><a href="https://ricardoromo.co/wp-content/uploads/2020/01/entornos_python.png"><img width="602" height="469" src="./../../wp-content/uploads/2020/01/entornos_python.png" class="elementor-animation-grow attachment-large size-large" alt="" loading="lazy" srcset="./../../wp-content/uploads/2020/01/entornos_python.png 602w, ./../../wp-content/uploads/2020/01/entornos_python-300x234.png 300w" sizes="(max-width: 602px) 100vw, 602px"></a></figure></div>		</div>
+				</div>
+				<section class="elementor-section elementor-inner-section elementor-element elementor-element-1d4c2b02 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="1d4c2b02" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-2d268393" data-id="2d268393" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-17a4e3b4 elementor-widget elementor-widget-text-editor" data-id="17a4e3b4" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">En este blog te mostraré 2 maneras de crear entornos virtuales para nuestros proyectos y una adicional para proyectos de </span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-weight: bold; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">ciencia de datos, y aprendizaje automático</span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">. Cabe resaltar que estaré utilizando la versión de Ubuntu 18.04.</span><span style="background-color: transparent; color: #000000; font-family: Montserrat, sans-serif; font-size: 11pt; white-space: pre-wrap;"> </span></p>					</div>
+						</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-inner-section elementor-element elementor-element-9d990e0 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="9d990e0" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-18e56407" data-id="18e56407" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-4d9eeee8 elementor-widget elementor-widget-heading" data-id="4d9eeee8" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h4 class="elementor-heading-title elementor-size-default"><a href="https://marketplace.visualstudio.com/items?itemName=HookyQR.minify" target="_blank">virtualenv</a></h4>		</div>
+				</div>
+				<div class="elementor-element elementor-element-2bc4aff3 elementor-widget elementor-widget-text-editor" data-id="2bc4aff3" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<pre><span id="docs-internal-guid-ceae49a0-7fff-64b5-549b-f7189db60c3c"><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">virtualevn es un paquete que podemos encontrar en el repositorio de paquetes oficiales de python, para instalarlo necesitamos permisos </span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-weight: bold; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">root:</span></span></pre>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-9c1cce0 elementor-widget elementor-widget-text-editor" data-id="9c1cce0" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<pre class="wp-block-code line-numbers language-cpp"><code class=" language-cpp" lang="bash">sudo apt-get install python3-venv
+</code></pre>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-05db87e elementor-widget elementor-widget-text-editor" data-id="05db87e" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"> </p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span id="docs-internal-guid-5040e8e3-7fff-228f-b5c9-e9828a1efbe5"><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">Luego de la instalación, nos dirigimos a la </span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-weight: bold; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">carpeta </span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">donde queremos instalar el ambiente, normalmente la carpeta de nuestro proyecto. Abrimos </span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-weight: bold; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">una terminal</span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;"> e ingresamos el siguiente comando:</span></span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-dd4d606 elementor-widget elementor-widget-text-editor" data-id="dd4d606" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<pre class="wp-block-code line-numbers language-cpp"><code class=" language-cpp" lang="bash">virtualenv nombre_del_entorno -p python2
+</code></pre>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-7580df2 elementor-widget elementor-widget-text-editor" data-id="7580df2" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span id="docs-internal-guid-861cbbd8-7fff-278f-6d34-58f8517a4c5b"><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">Para python 2</span></span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-3f0c48e elementor-widget elementor-widget-text-editor" data-id="3f0c48e" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<pre class="wp-block-code line-numbers language-cpp"><code class=" language-cpp" lang="bash">virtualenv nombre_del_entorno -p python3
+</code></pre>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-8dee8fb elementor-widget elementor-widget-text-editor" data-id="8dee8fb" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Para python3</span></p>
+<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><b id="docs-internal-guid-85a867cc-7fff-45eb-ce2b-24f057cd1a5e" style="font-weight: normal;"> </b></p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Ingresamos el nombre de nuestro ambiente y el intérprete de python con el que queremos que se cree. </span></p>
+<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><br><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">Para activar el ambiente: </span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;"><br></span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-53fef50 elementor-widget elementor-widget-text-editor" data-id="53fef50" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<pre class="wp-block-code line-numbers language-cpp"><code class=" language-cpp" lang="bash">source nombre_del_entorno/bin/activate 
+</code></pre>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-c126ec8 elementor-widget elementor-widget-text-editor" data-id="c126ec8" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Y listo, ya tenemos en esta consola, activado un ambiente de python, aislado de las demás librerías y proyectos de la máquina, aquí podemos hacer nuestras pruebas e instalar paquetes sin preocuparnos por </span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"><b>problemas de compatibilidad</b></span><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">. Esto lo tendremos que hacer para </span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"><b>cada terminal</b></span><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"> que abramos, si queremos trabajar con el ambiente.</span></p>
+<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><b style="font-weight: normal;"> </b></p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Para desactivar el ambiente: </span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-c448398 elementor-widget elementor-widget-text-editor" data-id="c448398" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<pre class="wp-block-code line-numbers language-cpp"><code class=" language-cpp" lang="bash">deactivate
+</code></pre>					</div>
+						</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-inner-section elementor-element elementor-element-b4bcd54 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="b4bcd54" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-108443a" data-id="108443a" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-d63d22e elementor-widget elementor-widget-heading" data-id="d63d22e" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h4 class="elementor-heading-title elementor-size-default"><a href="https://marketplace.visualstudio.com/items?itemName=HookyQR.minify" target="_blank">venv</a></h4>		</div>
+				</div>
+				<div class="elementor-element elementor-element-593dcb3 elementor-widget elementor-widget-text-editor" data-id="593dcb3" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">A partir de la <b>versión 3.3 de python</b>, se crea el paquete oficial para crear entornos virtuales, por lo que no será posible crear entornos para<b> Python 2</b> con este programa, cosa que ya para los tiempos que corren, no deberías estar creando nuevos proyectos con esta versión.</span></p>
+<pre> </pre>
+<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">El proceso de instalación es el mismo, necesitamos abrir una terminal y con permisos root:</span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-3a452b6 elementor-widget elementor-widget-text-editor" data-id="3a452b6" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<pre class="wp-block-code line-numbers language-cpp"><code class=" language-cpp" lang="bash">sudo apt-get install python3-venv</code></pre>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-d7abc16 elementor-widget elementor-widget-text-editor" data-id="d7abc16" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"> </p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Nos dirigimos a la carpeta de nuestro proyecto y creamos el entorno:</span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-7e21412 elementor-widget elementor-widget-text-editor" data-id="7e21412" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<pre class="wp-block-code line-numbers language-cpp"><code class=" language-cpp" lang="bash">python3 -m venv nombre_del_entorno
+</code></pre>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-de8b54e elementor-widget elementor-widget-text-editor" data-id="de8b54e" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"> </p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Una vez creado </span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"><b>activamos el entorno</b></span><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">:</span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-9634186 elementor-widget elementor-widget-text-editor" data-id="9634186" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<pre class="wp-block-code line-numbers language-cpp"><code class=" language-cpp" lang="bash">source nombre_del_entorno/bin/activate
+</code></pre>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-4c4b880 elementor-widget elementor-widget-text-editor" data-id="4c4b880" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="color: #000000; font-family: Montserrat, sans-serif;"><span style="font-size: 14.6667px; white-space: pre-wrap;">De esta manera tendremos otro entorno de Python 3 aislado de los demás. </span></span></p>
+<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"> </p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"> </span><span style="background-color: transparent; color: #000000; font-family: Montserrat, sans-serif; font-size: 11pt; white-space: pre-wrap;">En cualquiera de ambos casos, al ingresar al ambiente y escribir:</span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-4058065 elementor-widget elementor-widget-text-editor" data-id="4058065" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<pre class="wp-block-code line-numbers language-cpp"><code class=" language-cpp" lang="bash">pip list
+</code></pre>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-6195635 elementor-widget elementor-widget-text-editor" data-id="6195635" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span id="docs-internal-guid-c98bf9fc-7fff-d01d-b288-eb75d3db1e7f"><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">Debe salirla siguiente lista de paquetes:</span></span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-32c5494 elementor-widget elementor-widget-text-editor" data-id="32c5494" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 10.5pt; font-family: 'Courier New'; color: #383a42; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Package    Version</span></p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 10.5pt; font-family: 'Courier New'; color: #383a42; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">&#8212;&#8212;&#8212;- &#8212;&#8212;-</span></p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 10.5pt; font-family: 'Courier New'; color: #383a42; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">pip        20.0.2 </span></p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 10.5pt; font-family: 'Courier New'; color: #383a42; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">setuptools 44.0.0 </span></p>
+<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"> </p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 10.5pt; font-family: 'Courier New'; color: #383a42; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">wheel      0.34.1</span></p>					</div>
+						</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-inner-section elementor-element elementor-element-f84feb5 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="f84feb5" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-f712aa5" data-id="f712aa5" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-d41a95b elementor-widget elementor-widget-heading" data-id="d41a95b" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h4 class="elementor-heading-title elementor-size-default"><a href="https://marketplace.visualstudio.com/items?itemName=HookyQR.minify" target="_blank">Anaconda</a></h4>		</div>
+				</div>
+				<div class="elementor-element elementor-element-781070b elementor-widget elementor-widget-text-editor" data-id="781070b" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Si tu propósito es trabajar en proyectos de</span><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: bold; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"> Machine Learning,</span> <span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: bold; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Data Science o Big Data</span><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">, te interesará tener ambientes con librerías como pandas, numpy o scipy ya instaladas. Así como </span><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: bold; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Jupiter Notebook </span><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">o</span><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: bold; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"> Spyder</span><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"> instalados. Para este propósito te servirá instalar el software Anaconda. Este nos permite crear ambientes de </span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"><b>python</b></span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"><b>2 o python3</b></span><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">  para nuestros proyectos, que ya vengan con una serie de librerías adicionales para proyectos de ciencia de datos, y aprendizaje automático.</span></p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"> </span></p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">La instalación de Anaconda será más demorada y más pesada, debido a la cantidad de paquetes que tiene que instalar.</span></p>
+<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="background-color: transparent; color: #000000; font-family: Montserrat, sans-serif; font-size: 16pt; white-space: pre-wrap;"> </span></p>
+<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="background-color: transparent; color: #000000; font-family: Montserrat, sans-serif; font-size: 16pt; white-space: pre-wrap;"><b>Paso 1:</b></span></p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Vamos a la </span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"><b>web de anaconda</b></span> <a style="text-decoration: none;" href="https://www.anaconda.com/distribution/"><span style="font-size: 10.5pt; font-family: Montserrat,sans-serif; color: #1155cc; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: underline; -webkit-text-decoration-skip: none; text-decoration-skip-ink: none; vertical-align: baseline; white-space: pre-wrap;">https://www.anaconda.com/distribution/</span></a><span style="font-size: 10.5pt; font-family: Montserrat,sans-serif; color: #323232; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"> y</span><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"> descargamos la ultima version de Anaconda que queremos instalar, puedes  escoger entre python2 y python3.</span></p>
+<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="background-color: transparent; color: #000000; font-family: Montserrat, sans-serif; font-size: 16pt; white-space: pre-wrap;"> </span></p>
+<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="background-color: transparent; color: #000000; font-family: Montserrat, sans-serif; font-size: 16pt; white-space: pre-wrap;"><b>Paso 2:</b></span></p>
+<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"> </p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Vamos a la carpeta de descarga y abrimos una terminal: </span></p>
+<div><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"> </span></div>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-b293f63 elementor-widget elementor-widget-text-editor" data-id="b293f63" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<pre class="wp-block-code line-numbers language-cpp"><code class=" language-cpp" lang="bash">bash Anaconda3-2019.03-Linux-x86_64.sh<br></code></pre>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-75353f7 elementor-widget elementor-widget-text-editor" data-id="75353f7" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"> </p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"> </p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">En este momento el programa iniciará su instalación, aceptamos la licencia.</span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-5d32cff elementor-widget elementor-widget-text-editor" data-id="5d32cff" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"> </p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"> </p>
+<p dir="ltr" style="line-height: 1.8857142857142857; text-align: justify; margin-top: 0pt; margin-bottom: 3pt;"><span style="font-size: 10.5pt; font-family: Montserrat,sans-serif; color: #323232; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Output</span></p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 10.5pt; font-family: Montserrat,sans-serif; color: #323232; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">&#8230;</span></p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 10.5pt; font-family: Montserrat,sans-serif; color: #323232; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">installation finished.</span></p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 10.5pt; font-family: Montserrat,sans-serif; color: #323232; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Do you wish the installer to prepend the Anaconda3 install location</span></p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 10.5pt; font-family: Montserrat,sans-serif; color: #323232; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">to PATH in your /home/sammy/.bashrc ? [yes|no]</span></p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"> </p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 10.5pt; font-family: Montserrat,sans-serif; color: #323232; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">[no] &gt;&gt;&gt;</span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-95d6798 elementor-widget elementor-widget-text-editor" data-id="95d6798" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"> </p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Al final de la instalación recomendamos </span><b><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">responder  [yes</span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">]</span></b><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"> para poder usar el comando </span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"><b>conda</b></span><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">.</span></p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="background-color: transparent; color: #000000; font-family: Montserrat, sans-serif; font-size: 16pt; font-weight: bold; white-space: pre-wrap;"> </span></p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="background-color: transparent; color: #000000; font-family: Montserrat, sans-serif; font-size: 16pt; font-weight: bold; white-space: pre-wrap;">Paso 3: </span></p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Una vez finalizada la instalación, ya tenemos Anaconda en nuestro PC, para activarla en nuestra consola, corremos el comando: </span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-1f0f915 elementor-widget elementor-widget-text-editor" data-id="1f0f915" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<pre class="wp-block-code line-numbers language-cpp"><code class=" language-cpp" lang="bash">source ~/.bashrc
+</code></pre>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-965bee3 elementor-widget elementor-widget-text-editor" data-id="965bee3" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<h2 dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 18pt; margin-bottom: 6pt;"><span style="background-color: transparent; color: #000000; font-family: Montserrat, sans-serif; font-size: 16pt; font-weight: bold; white-space: pre-wrap;">Paso 4:</span></h2>
+<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="background-color: transparent; font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">Con<b> Anaconda instalado</b>, tendremos también instalada la versión de python que escogimos en la página de descarga, pero con Anaconda también podemos instalar entornos de otra versión de python como con </span><span style="background-color: transparent; font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; font-weight: bold; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">virtualenv</span><span style="background-color: transparent; font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">. </span></p>
+<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"> </p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Para python 2</span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-d55b78b elementor-widget elementor-widget-text-editor" data-id="d55b78b" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<pre class="wp-block-code line-numbers language-cpp"><code class=" language-cpp" lang="bash">conda create --name nombre_del_ambiente python=2
+</code></pre>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-bfa095f elementor-widget elementor-widget-text-editor" data-id="bfa095f" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"> </p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; font-family: Montserrat,sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Para python 3</span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-9dc42fe elementor-widget elementor-widget-text-editor" data-id="9dc42fe" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<pre class="wp-block-code line-numbers language-cpp"><code class=" language-cpp" lang="bash">conda create --name nombre_del_ambiente python=3
+</code></pre>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-27d70a4 elementor-widget elementor-widget-text-editor" data-id="27d70a4" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"> </p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="background-color: transparent; color: #000000; font-family: Montserrat, sans-serif; font-size: 16pt; font-weight: bold; white-space: pre-wrap;">Paso 5: </span></p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 10.5pt; font-family: Montserrat,sans-serif; color: #323232; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Para activar el ambiente: </span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-b941307 elementor-widget elementor-widget-text-editor" data-id="b941307" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<pre class="wp-block-code line-numbers language-cpp"><code class=" language-cpp" lang="bash">conda activate
+</code></pre>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-364e12e elementor-widget elementor-widget-text-editor" data-id="364e12e" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"> </p>
+<p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 0pt; margin-bottom: 0pt;"><span style="background-color: transparent; color: #323232; font-family: Montserrat, sans-serif; font-size: 10.5pt; white-space: pre-wrap;">Para desactivar el ambiente: </span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-57da77b elementor-widget elementor-widget-text-editor" data-id="57da77b" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<pre class="wp-block-code line-numbers language-cpp"><code class=" language-cpp" lang="bash">conda deactivate
+</code></pre>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-e863803 elementor-widget elementor-widget-text-editor" data-id="e863803" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"> </p>
+<p dir="ltr" style="margin-top: 0pt; margin-bottom: 0pt; line-height: 1.38;"><span style="font-size: 10.5pt; font-family: Montserrat, sans-serif; color: #323232; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">Estos ambientes se instalan de manera <b>global</b> dentro de la carpeta del <b>usuario linux, </b>entonces podemos acceder a estos ambientes desde<b> cualquier consola</b>. Para ver la lista de ambientes instalados: </span></p>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-163a674 elementor-widget elementor-widget-text-editor" data-id="163a674" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<pre class="wp-block-code line-numbers language-cpp"><code class=" language-cpp" lang="bash">conda env list
+</code></pre>					</div>
+						</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-inner-section elementor-element elementor-element-43f37224 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="43f37224" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-2cc55c76" data-id="2cc55c76" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-46251a00 elementor-widget elementor-widget-heading" data-id="46251a00" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h4 class="elementor-heading-title elementor-size-default"><a href="https://marketplace.visualstudio.com/items?itemName=qinjia.view-in-browser%20" target="_blank">Conclusiones</a></h4>		</div>
+				</div>
+				<div class="elementor-element elementor-element-22901b94 elementor-widget elementor-widget-text-editor" data-id="22901b94" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+					<pre><span id="docs-internal-guid-7e25140b-7fff-6c21-569d-66c257dbffc4"><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">Si necesitas crear ambientes rápidamente en python2 o python3, utilizaras </span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-weight: bold; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">virtualenv</span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">. Si necesitas crear un ambiente solamente en python3 utilizaras </span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-weight: bold; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">venv</span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">, que ya deberías dar el salto y dejar de usar python2. Si tu propósito es trabajar en ambientes para proyectos de </span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-weight: bold; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">ciencia de datos, y aprendizaje automático</span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;"> la mejor opción es </span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-weight: bold; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">Anaconda</span><span style="font-size: 11pt; font-family: Montserrat, sans-serif; color: #000000; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">, ya que te ahorra tiempo en la instalación de las librerías que vas a utilizar.</span></span></pre>					</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-153d01f8 elementor-widget elementor-widget-spacer" data-id="153d01f8" data-element_type="widget" data-widget_type="spacer.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-spacer">
+			<div class="elementor-spacer-inner"></div>
+		</div>
+				</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-63e0a789 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="63e0a789" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-de5a85e" data-id="de5a85e" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-258a3bd2 elementor-widget elementor-widget-html" data-id="258a3bd2" data-element_type="widget" data-widget_type="html.default">
+				<div class="elementor-widget-container">
+			<h3>Otros Posts:</h3>		</div>
+				</div>
+				<div class="elementor-element elementor-element-5bd88810 elementor-grid-4 elementor-grid-tablet-2 elementor-grid-mobile-1 elementor-widget elementor-widget-elementor-blog-posts" data-id="5bd88810" data-element_type="widget" data-settings="{&quot;columns&quot;:&quot;4&quot;,&quot;columns_tablet&quot;:&quot;2&quot;,&quot;columns_mobile&quot;:&quot;1&quot;}" data-widget_type="elementor-blog-posts.default">
+				<div class="elementor-widget-container">
+					<div class="wpcap-grid">
+						<div class="wpcap-grid-container elementor-grid wpcap-grid-desktop-4 wpcap-grid-tablet-2 wpcap-grid-mobile-1 grid-meta-bottom">
+
+				
+        <article id="post-995" class="wpcap-post post-995 post type-post status-publish format-standard has-post-thumbnail hentry category-tutorial">
+         
+            <div class="post-grid-inner">
+            	
+            				<div class="post-grid-thumbnail">
+				<a href="./../../2019/comandos-de-consola/index.html">
+					<img width="768" height="432" src="./../../wp-content/uploads/2019/12/banner_resultado-768x432.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="" loading="lazy" srcset="./../../wp-content/uploads/2019/12/banner_resultado-768x432.jpg 768w, ./../../wp-content/uploads/2019/12/banner_resultado-300x169.jpg 300w, ./../../wp-content/uploads/2019/12/banner_resultado-1024x576.jpg 1024w, ./../../wp-content/uploads/2019/12/banner_resultado.jpg 1280w" sizes="(max-width: 768px) 100vw, 768px">				</a>
+			</div>
+        
+                <div class="post-grid-text-wrap">
+               				<h5 class="title">
+			<a href="./../../2019/comandos-de-consola/index.html">Ahorra tiempo programando con comandos de consola</a>
+		</h5>
+			                	                                </div>
+
+                		<div class="post-grid-meta">
+			
+				<span class="post-author">12 diciembre 2019</span>
+
+						</div>
+		
+            </div>
+<!-- .blog-inner -->
+           
+        </article>
+
+        
+        <article id="post-795" class="wpcap-post post-795 post type-post status-publish format-standard has-post-thumbnail hentry category-tutorial">
+         
+            <div class="post-grid-inner">
+            	
+            				<div class="post-grid-thumbnail">
+				<a href="./../../2019/como-crear-una-libreria-en-c-c/index.html">
+					<img width="768" height="432" src="./../../wp-content/uploads/2019/12/cabecera-768x432.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="header-c-library" loading="lazy" srcset="./../../wp-content/uploads/2019/12/cabecera-768x432.jpg 768w, ./../../wp-content/uploads/2019/12/cabecera-300x169.jpg 300w, ./../../wp-content/uploads/2019/12/cabecera-1024x576.jpg 1024w, ./../../wp-content/uploads/2019/12/cabecera-1536x864.jpg 1536w, ./../../wp-content/uploads/2019/12/cabecera.jpg 1920w" sizes="(max-width: 768px) 100vw, 768px">				</a>
+			</div>
+        
+                <div class="post-grid-text-wrap">
+               				<h5 class="title">
+			<a href="./../../2019/como-crear-una-libreria-en-c-c/index.html">Como crear una Librería en C/C++</a>
+		</h5>
+			                	                                </div>
+
+                		<div class="post-grid-meta">
+			
+				<span class="post-author">3 diciembre 2019</span>
+
+						</div>
+		
+            </div>
+<!-- .blog-inner -->
+           
+        </article>
+
+        
+        <article id="post-1145" class="wpcap-post post-1145 post type-post status-publish format-standard has-post-thumbnail hentry category-blog">
+         
+            <div class="post-grid-inner">
+            	
+            				<div class="post-grid-thumbnail">
+				<a href="./../5-canales-para-aprender-desarrollo-web-gratis/index.html">
+					<img width="768" height="432" src="./../../wp-content/uploads/2020/01/Banner_canales_resultado_low-768x432.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="" loading="lazy" srcset="./../../wp-content/uploads/2020/01/Banner_canales_resultado_low-768x432.jpg 768w, ./../../wp-content/uploads/2020/01/Banner_canales_resultado_low-300x169.jpg 300w, ./../../wp-content/uploads/2020/01/Banner_canales_resultado_low-1024x576.jpg 1024w, ./../../wp-content/uploads/2020/01/Banner_canales_resultado_low.jpg 1280w" sizes="(max-width: 768px) 100vw, 768px">				</a>
+			</div>
+        
+                <div class="post-grid-text-wrap">
+               				<h5 class="title">
+			<a href="./../5-canales-para-aprender-desarrollo-web-gratis/index.html">5 Canales para aprender desarrollo web gratis</a>
+		</h5>
+			                	                                </div>
+
+                		<div class="post-grid-meta">
+			
+				<span class="post-author">8 enero 2020</span>
+
+						</div>
+		
+            </div>
+<!-- .blog-inner -->
+           
+        </article>
+
+        
+        <article id="post-1563" class="wpcap-post post-1563 post type-post status-publish format-standard has-post-thumbnail hentry category-blog">
+         
+            <div class="post-grid-inner">
+            	
+            				<div class="post-grid-thumbnail">
+				<a href="./../3-alternativas-para-publicar-una-pagina-web-gratis/index.html">
+					<img width="768" height="432" src="./../../wp-content/uploads/2020/03/Banner-Horizontal-Sitios-GratisV3-768x432.png" class="attachment-medium_large size-medium_large wp-post-image" alt="" loading="lazy" srcset="./../../wp-content/uploads/2020/03/Banner-Horizontal-Sitios-GratisV3-768x432.png 768w, ./../../wp-content/uploads/2020/03/Banner-Horizontal-Sitios-GratisV3-300x169.png 300w, ./../../wp-content/uploads/2020/03/Banner-Horizontal-Sitios-GratisV3-1024x576.png 1024w, ./../../wp-content/uploads/2020/03/Banner-Horizontal-Sitios-GratisV3.png 1280w" sizes="(max-width: 768px) 100vw, 768px">				</a>
+			</div>
+        
+                <div class="post-grid-text-wrap">
+               				<h5 class="title">
+			<a href="./../3-alternativas-para-publicar-una-pagina-web-gratis/index.html">Publica gratis una pagina web</a>
+		</h5>
+			                	                                </div>
+
+                		<div class="post-grid-meta">
+			
+				<span class="post-author">19 marzo 2020</span>
+
+						</div>
+		
+            </div>
+<!-- .blog-inner -->
+           
+        </article>
+
+        
+			</div>			      						               
+		</div>
+				</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-145b8812 elementor-section-height-min-height elementor-section-boxed elementor-section-height-default elementor-section-items-middle" data-id="145b8812" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;,&quot;shape_divider_bottom&quot;:&quot;mountains&quot;}">
+					<div class="elementor-shape elementor-shape-bottom" data-negative="false">
+			<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1000 100" preserveaspectratio="none">
+	<path class="elementor-shape-fill" opacity="0.33" d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"></path>
+	<path class="elementor-shape-fill" opacity="0.66" d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"></path>
+	<path class="elementor-shape-fill" d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"></path>
+</svg>		</div>
+					<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-5eb5c533" data-id="5eb5c533" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<section class="elementor-section elementor-inner-section elementor-element elementor-element-2f64c1c6 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="2f64c1c6" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-1765445b" data-id="1765445b" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-46b0e6cb elementor-widget elementor-widget-image" data-id="46b0e6cb" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-image">
+												<img width="300" height="279" src="./../../wp-content/uploads/2019/11/Logo-Para-Trailers-2_resultado-300x279.jpg" class="attachment-medium size-medium" alt="" loading="lazy" srcset="./../../wp-content/uploads/2019/11/Logo-Para-Trailers-2_resultado-300x279.jpg 300w, ./../../wp-content/uploads/2019/11/Logo-Para-Trailers-2_resultado.jpg 422w" sizes="(max-width: 300px) 100vw, 300px">														</div>
+						</div>
+				</div>
+						</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-311abaff" data-id="311abaff" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-45fa79ca elementor-widget elementor-widget-heading" data-id="45fa79ca" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h3 class="elementor-heading-title elementor-size-default">Ricardo Romo</h3>		</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<div class="elementor-element elementor-element-737170b7 elementor-widget elementor-widget-spacer" data-id="737170b7" data-element_type="widget" data-widget_type="spacer.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-spacer">
+			<div class="elementor-spacer-inner"></div>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-9e0941b elementor-shape-circle e-grid-align-left elementor-grid-0 elementor-widget elementor-widget-social-icons" data-id="9e0941b" data-element_type="widget" data-widget_type="social-icons.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-social-icons-wrapper elementor-grid">
+							<div class="elementor-grid-item">
+					<a class="elementor-icon elementor-social-icon elementor-social-icon-facebook elementor-repeater-item-fa2188b" href="https://www.facebook.com/jricardoromo" target="_blank">
+						<span class="elementor-screen-only">Facebook</span>
+						<i class="fab fa-facebook"></i>					</a>
+				</div>
+							<div class="elementor-grid-item">
+					<a class="elementor-icon elementor-social-icon elementor-social-icon-twitter elementor-repeater-item-9ff4e36" href="https://twitter.com/MrRomoG" target="_blank">
+						<span class="elementor-screen-only">Twitter</span>
+						<i class="fab fa-twitter"></i>					</a>
+				</div>
+							<div class="elementor-grid-item">
+					<a class="elementor-icon elementor-social-icon elementor-social-icon-youtube elementor-repeater-item-9937b7f" href="https://www.youtube.com/channel/UCxYP1CqEUCTtGfaPkpSvpdA?view_as=subscriber" target="_blank">
+						<span class="elementor-screen-only">Youtube</span>
+						<i class="fab fa-youtube"></i>					</a>
+				</div>
+							<div class="elementor-grid-item">
+					<a class="elementor-icon elementor-social-icon elementor-social-icon-linkedin elementor-repeater-item-bb053dd" href="https://www.linkedin.com/in/jos%C3%A9-ricardo-romo-gutierrez-a46b2bb7/" target="_blank">
+						<span class="elementor-screen-only">Linkedin</span>
+						<i class="fab fa-linkedin"></i>					</a>
+				</div>
+							<div class="elementor-grid-item">
+					<a class="elementor-icon elementor-social-icon elementor-social-icon-instagram elementor-repeater-item-be454ed" href="https://www.instagram.com/mrromog/" target="_blank">
+						<span class="elementor-screen-only">Instagram</span>
+						<i class="fab fa-instagram"></i>					</a>
+				</div>
+					</div>
+				</div>
+				</div>
+						</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-bf14436" data-id="bf14436" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<section class="elementor-section elementor-inner-section elementor-element elementor-element-6190124c elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="6190124c" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-7b6f1503" data-id="7b6f1503" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-168a38da elementor-widget elementor-widget-heading" data-id="168a38da" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h5 class="elementor-heading-title elementor-size-default">Mapa del sitio</h5>		</div>
+				</div>
+				<div class="elementor-element elementor-element-db8ec5d elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="db8ec5d" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+					<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+					<a href="./../../index.html">						<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-home"></i>						</span>
+										<span class="elementor-icon-list-text">Inicio</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+					<a href="./../../proyectos/index.html">						<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-industry"></i>						</span>
+										<span class="elementor-icon-list-text">Proyectos</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+					<a href="./../../blog/index.html">						<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-blog"></i>						</span>
+										<span class="elementor-icon-list-text">Blogs</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+					<a href="./../../noticias/index.html">						<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="far fa-newspaper"></i>						</span>
+										<span class="elementor-icon-list-text">Noticias</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+					<a href="./../../sobre-mi/index.html">						<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-user"></i>						</span>
+										<span class="elementor-icon-list-text">Sobre mí</span>
+											</a>
+									</li>
+						</ul>
+				</div>
+				</div>
+						</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-3640b0df" data-id="3640b0df" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-3f0f92c8 elementor-widget elementor-widget-heading" data-id="3f0f92c8" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h5 class="elementor-heading-title elementor-size-default">Contacto</h5>		</div>
+				</div>
+				<div class="elementor-element elementor-element-6898ac6e elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="6898ac6e" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+					<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-mail-bulk"></i>						</span>
+										<span class="elementor-icon-list-text">email : jricardoromo21@gmail.com</span>
+									</li>
+						</ul>
+				</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+						</div>
+						</div>
+					</div>
+		<!-- dynamic footer start --><div data-enabled="false" data-colibri-component="" data-colibri-id="15-f1" class="page-footer style-300 style-local-15-f1 position-relative">
+  <!---->
+  <div data-colibri-component="section" data-colibri-id="15-f2" id="footer" class="h-section h-section-global-spacing d-flex align-items-lg-center align-items-md-center align-items-center style-301 style-local-15-f2 position-relative">
+    <!---->
+    <!---->
+    <div class="h-section-grid-container h-section-boxed-container">
+      <!---->
+      <div data-colibri-id="15-f3" class="h-row-container gutters-row-lg-1 gutters-row-md-1 gutters-row-2 gutters-row-v-lg-1 gutters-row-v-md-1 gutters-row-v-2 style-302 style-local-15-f3 position-relative">
+        <!---->
+        <div class="h-row justify-content-lg-center justify-content-md-center justify-content-center align-items-lg-stretch align-items-md-stretch align-items-stretch gutters-col-lg-1 gutters-col-md-1 gutters-col-2 gutters-col-v-lg-1 gutters-col-v-md-1 gutters-col-v-2">
+          <!---->
+          <div class="h-column h-column-container d-flex h-col-lg-auto h-col-md-auto h-col-auto style-303-outer style-local-15-f4-outer">
+            <div data-colibri-id="15-f4" class="d-flex h-flex-basis h-column__inner h-px-lg-1 h-px-md-1 h-px-2 v-inner-lg-1 v-inner-md-1 v-inner-2 style-303 style-local-15-f4 position-relative">
+              <!---->
+              <!---->
+              <div class="w-100 h-y-container h-column__content h-column__v-align flex-basis-100 align-self-lg-start align-self-md-start align-self-start">
+                <!---->
+                <div data-colibri-id="15-f5" class="style-542 style-local-15-f5 position-relative h-element">
+                  <!---->
+                  <div class="h-global-transition-all">© 2021 Ricardo Romo. Created for free using WordPress and
+                    <a target="_blank" href="https://colibriwp.com/">Colibri</a>
+</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- dynamic footer end -->
+</div>
+<!-- #page -->
+        <script data-name="colibri-frontend-data">window.colibriFrontendData = [];</script>
+        
+		<style id="skip-link-styles">.skip-link.screen-reader-text {
+			border: 0;
+			clip: rect(1px,1px,1px,1px);
+			clip-path: inset(50%);
+			height: 1px;
+			margin: -1px;
+			overflow: hidden;
+			padding: 0;
+			position: absolute !important;
+			width: 1px;
+			word-wrap: normal !important;
+		}
+
+		.skip-link.screen-reader-text:focus {
+			background-color: #eee;
+			clip: auto !important;
+			clip-path: none;
+			color: #444;
+			display: block;
+			font-size: 1em;
+			height: auto;
+			left: 5px;
+			line-height: normal;
+			padding: 15px 23px 14px;
+			text-decoration: none;
+			top: 5px;
+			width: auto;
+			z-index: 100000;
+		}</style>
+		<script>
+	( function() {
+		var skipLinkTarget = document.querySelector( 'main' ),
+			parentEl,
+			skipLinkTargetID,
+			skipLink;
+
+		// Early exit if a skip-link target can't be located.
+		if ( ! skipLinkTarget ) {
+			return;
+		}
+
+		// Get the site wrapper.
+		// The skip-link will be injected in the beginning of it.
+		parentEl = document.querySelector( '.wp-site-blocks' ) || document.body,
+
+		// Get the skip-link target's ID, and generate one if it doesn't exist.
+		skipLinkTargetID = skipLinkTarget.id;
+		if ( ! skipLinkTargetID ) {
+			skipLinkTargetID = 'wp--skip-link--target';
+			skipLinkTarget.id = skipLinkTargetID;
+		}
+
+		// Create the skip link.
+		skipLink = document.createElement( 'a' );
+		skipLink.classList.add( 'skip-link', 'screen-reader-text' );
+		skipLink.href = '#' + skipLinkTargetID;
+		skipLink.innerHTML = 'Saltar al contenido';
+
+		// Inject the skip link.
+		parentEl.insertAdjacentElement( 'afterbegin', skipLink );
+	}() );
+	</script>
+	<script type="text/javascript" src="./../../wp-includes/js/comment-reply.min.js?ver=5.7.1" id="comment-reply-js"></script>
+<script type="text/javascript" src="./../../wp-includes/js/wp-embed.min.js?ver=5.7.1" id="wp-embed-js"></script>
+<script type="text/javascript" src="./../../wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.2.2" id="elementor-webpack-runtime-js"></script>
+<script type="text/javascript" src="./../../wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.2.2" id="elementor-frontend-modules-js"></script>
+<script type="text/javascript" src="./../../wp-content/plugins/elementor/assets/lib/waypoints/waypoints.min.js?ver=4.0.2" id="elementor-waypoints-js"></script>
+<script type="text/javascript" src="./../../wp-includes/js/jquery/ui/core.min.js?ver=1.12.1" id="jquery-ui-core-js"></script>
+<script type="text/javascript" src="./../../wp-content/plugins/elementor/assets/lib/swiper/swiper.min.js?ver=5.3.6" id="swiper-js"></script>
+<script type="text/javascript" src="./../../wp-content/plugins/elementor/assets/lib/share-link/share-link.min.js?ver=3.2.2" id="share-link-js"></script>
+<script type="text/javascript" src="./../../wp-content/plugins/elementor/assets/lib/dialog/dialog.min.js?ver=4.8.1" id="elementor-dialog-js"></script>
+<script type="text/javascript" id="elementor-frontend-js-before">
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Compartir en Facebook","shareOnTwitter":"Compartir en Twitter","pinIt":"Pinear","download":"Descargar","downloadImage":"Descargar imagen","fullscreen":"Pantalla completa","zoom":"Zoom","share":"Compartir","playVideo":"Reproducir vídeo","previous":"Anterior","next":"Siguiente","close":"Cerrar"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Móvil","value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Móvil grande","value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tableta","value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tableta grande","value":1365,"direction":"max","is_enabled":false},"laptop":{"label":"Portátil","value":1620,"direction":"max","is_enabled":false},"widescreen":{"label":"Pantalla grande","value":2400,"direction":"min","is_enabled":false}}},"version":"3.2.2","is_static":false,"experimentalFeatures":[],"urls":{"assets":".\/wp-content\/plugins\/elementor\/assets\/"},"settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":1284,"title":"Como%20crear%20un%20entorno%20virtual%20en%20Python%20%E2%80%93%20Ricardo%20Romo","excerpt":"Una manera de tener varias versiones de un mismo paquete, para distitos proyectos en python, es con los ambientes virtuales. Aprende en este tutorial algunas maneras de crearlos.","featuredImage":".\/wp-content\/uploads\/2020\/01\/Banner-Horizontal-entornos_python.jpg"}};
+</script>
+<script type="text/javascript" src="./../../wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.2.2" id="elementor-frontend-js"></script>
+<script type="text/javascript" src="./../../wp-content/plugins/elementor/assets/js/preloaded-modules.min.js?ver=3.2.2" id="preloaded-modules-js"></script>
+</body>
+</html>
